@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/blog/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/blog/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue,vuex,axios,webpack,es6+," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="vue重够jquery项目之后的一些心得">
+<meta name="keywords" content="vue,vuex,axios,webpack,es6+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于vue（全家桶）的一些使用心得">
+<meta property="og:url" content="https://13623673118.github.io/blog/2018/07/15/关于vue（全家桶）的一些使用心得/index.html">
+<meta property="og:site_name" content="赵晨敏的博客">
+<meta property="og:description" content="vue重够jquery项目之后的一些心得">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-06T03:31:00.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于vue（全家桶）的一些使用心得">
+<meta name="twitter:description" content="vue重够jquery项目之后的一些心得">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://13623673118.github.io/blog/2018/07/15/关于vue（全家桶）的一些使用心得/"/>
+
+
+
+
+
+  <title>关于vue（全家桶）的一些使用心得 | 赵晨敏的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">赵晨敏的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">赵晨敏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+            我的首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+            所有文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+            文章分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+            我的标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+            了解作者
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://13623673118.github.io/blog/blog/2018/07/15/关于vue（全家桶）的一些使用心得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lost-dream">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵晨敏的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于vue（全家桶）的一些使用心得</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T15:28:46+08:00">
+                2018-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  vue重够jquery项目之后的一些心得
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最早之前开发的项目随着业务逻辑的迭代，到达现在实在让人无法接受，于是不得不进行了重构，紧锣密鼓的几个月之后终于完成。在这里说一下自己的一些感受。</p>
+<h1 id="关于vue-cli"><a href="#关于vue-cli" class="headerlink" title="关于vue-cli"></a>关于vue-cli</h1><p>vue-cli对vue进行了非常多的处理，尽量让开发者可以专心处理业务的逻辑而不用关心底层的部分。尽管如此，还是需要另外配置很多东西。</p>
+<h2 id="预处理器（eg-sass）"><a href="#预处理器（eg-sass）" class="headerlink" title="预处理器（eg:sass）"></a>预处理器（eg:sass）</h2><ul>
+<li>新版本的脚手架工具配置好了预处理器的部分，但没有集成预处理语言，也就是说，你不再需要配置预处理器，但还是应该install它。</li>
+<li>在一些情况下， sass的编译会出现异常。如果你能确信自己写的没有错，那问题确实出现在sass上，一般情况下sass的语法无法处理多层级的样式叠加。例如：我的项目引用了swiper，并全局使用swiper。.css。之后，又将swiper封装为组件，并给组件一些额外的样式，最后在组件调用时第三次添加特殊的样式，如此叠加css导致sass处理出现了问题。这个时候需要<code>deep</code>模式。  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/deep/ .my-swiper&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><ul>
+<li>host 0.0.0.0<br>开发移动应用，需要随时在手机上观察效果。在<code>package.json</code>添加  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0&quot;,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>关于背景图打包后出错的问题<br>  开发大型项目当然需要对src目录做一些修改，但添加层级也会导致webpack打包出错。我的项目通过分割组件构成，组建内部专属的图片直接放在组件文件内部。具体结构是这样的</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">├─src</span><br><span class="line">│  ├─assets</span><br><span class="line">│  │  ├─images</span><br><span class="line">│  │  ├─js</span><br><span class="line">│  │  ├─css</span><br><span class="line">│  │  ├─font</span><br><span class="line">│  ├─ pages</span><br><span class="line">│  │  ├─Index</span><br><span class="line">│  │  │ ├─Index.vue</span><br><span class="line">│  │  │ ├─1.jpg</span><br><span class="line">│  │  ├─Mine</span><br><span class="line">│  │  ├─...</span><br></pre></td></tr></table></figure>
+<p>  这个时候图片打包需要重新配置</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">build/utils.js</span><br><span class="line">function generateLoaders (loader, loaderOptions) &#123;</span><br><span class="line">    ...</span><br><span class="line">    if (options.extract) &#123;</span><br><span class="line">          return ExtractTextPlugin.extract(&#123;</span><br><span class="line">            use: loaders,</span><br><span class="line">            fallback: &apos;vue-style-loader&apos;,</span><br><span class="line">            publicPath: &apos;../../&apos; // add</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          return [&apos;vue-style-loader&apos;].concat(loaders)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="关于axios"><a href="#关于axios" class="headerlink" title="关于axios"></a>关于axios</h2><p>axios的配置我想说的只有拦截器。可以在请求或响应被 then 或 catch 处理前拦截它们<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> &#123;Base64&#125; <span class="keyword">from</span> <span class="string">'js-base64'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'@/router/index'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> $axios = axios.create(&#123;</span><br><span class="line">  baseURL: hostURL + <span class="string">'TouchStoneServiceNew'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$axios.interceptors.request.use(<span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  config.headers[<span class="string">'Content-Type'</span>] = <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">  config.headers[<span class="string">'Authorization'</span>] = authorization</span><br><span class="line">  <span class="keyword">return</span> config</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$axios.interceptors.response.use(</span><br><span class="line">  response =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (response.data.resultCode === <span class="string">'505'</span> || response.data.resultCode === <span class="string">'506'</span>) &#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">     </span><br><span class="line">        Router.push(&#123;</span><br><span class="line">          name: <span class="string">'loginRegister'</span>,</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;, <span class="number">2000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  &#125;,</span><br><span class="line">  error =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (error.response) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (error.response.status) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">401</span>: <span class="comment">// 返回 401 跳转到登录页面</span></span><br><span class="line">      </span><br><span class="line">            Router.push(&#123;</span><br><span class="line">              path: <span class="string">'loginRegister'</span>,</span><br><span class="line">              query: &#123;<span class="attr">redirect</span>: Router.currentRoute.fullPath&#125;</span><br><span class="line">            &#125;)</span><br><span class="line">   </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error) <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在请求发送之前向header添加content-type和authorization<br>请求返回之后拦截状态做处理</p>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p>vuex用来管理vue状态确实很方便，但<strong>只能在组件中需要共享的数据才使用vuex，简单地说就是路由不会跳转</strong>。因为vuex虽然保存数据，但因为vue本身就是单页项目，如果用户刷新网页就全部丢失了。一些重要的信息海慧寺因该保存在cookie和localstorage里。至于语法可以到官网查看，非常详细。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/ewm.jpg" alt="lost-dream 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/blog/tags/vuex/" rel="tag"># vuex</a>
+          
+            <a href="/blog/tags/axios/" rel="tag"># axios</a>
+          
+            <a href="/blog/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/blog/tags/es6/" rel="tag"># es6+</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/03/29/关于蜂窝状图片的实现/" rel="next" title="关于蜂窝状图片的实现">
+                <i class="fa fa-chevron-left"></i> 关于蜂窝状图片的实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/10/16/管理团队代码/" rel="prev" title="管理团队代码">
+                管理团队代码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/blog/images/touxiang.jpg"
+              alt="lost-dream" />
+          
+            <p class="site-author-name" itemprop="name">lost-dream</p>
+            <p class="site-description motion-element" itemprop="description">爱前端，爱技术，爱所有值得去爱的一切！！！</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lost-dream" target="_blank" title="GitHub">
+                  GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://gitee.com/lost-dream/events" target="_blank" title="码云">
+                  码云</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://home.cnblogs.com/u/1269036" target="_blank" title="博客园">
+                  博客园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/0bafcccabadf/timeline" target="_blank" title="简书">
+                  简书</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于vue-cli"><span class="nav-number">2.</span> <span class="nav-text">关于vue-cli</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理器（eg-sass）"><span class="nav-number">2.1.</span> <span class="nav-text">预处理器（eg:sass）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack"><span class="nav-number">2.2.</span> <span class="nav-text">webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于axios"><span class="nav-number">2.3.</span> <span class="nav-text">关于axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuex"><span class="nav-number">2.4.</span> <span class="nav-text">vuex</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered By Lost Dream</span>
+
+  
+</div>
+
+
+  <div class="powered-by">  个人专属</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">杜绝抄袭</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/z16.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","log":false,"tagMode":false});</script></body>
+</html>

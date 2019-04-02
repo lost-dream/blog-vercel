@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/blog/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/blog/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html5,cache," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="通过前端的方法清除浏览器缓存">
+<meta name="keywords" content="html5,cache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html清除缓存">
+<meta property="og:url" content="https://13623673118.github.io/blog/2017/11/25/html清除缓存/index.html">
+<meta property="og:site_name" content="赵晨敏的博客">
+<meta property="og:description" content="通过前端的方法清除浏览器缓存">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-06T03:31:00.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html清除缓存">
+<meta name="twitter:description" content="通过前端的方法清除浏览器缓存">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://13623673118.github.io/blog/2017/11/25/html清除缓存/"/>
+
+
+
+
+
+  <title>html清除缓存 | 赵晨敏的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">赵晨敏的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">赵晨敏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+            我的首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+            所有文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+            文章分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+            我的标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+            了解作者
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://13623673118.github.io/blog/blog/2017/11/25/html清除缓存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lost-dream">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵晨敏的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">html清除缓存</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T08:25:15+08:00">
+                2017-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/html5/" itemprop="url" rel="index">
+                    <span itemprop="name">html5</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  通过前端的方法清除浏览器缓存
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="通过设置-meta-标签清除页面缓存"><a href="#通过设置-meta-标签清除页面缓存" class="headerlink" title="通过设置 meta 标签清除页面缓存"></a>通过设置 meta 标签清除页面缓存</h2><p>通过向 header 中添加以下代码可以清除页面缓存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-cache, no-store, must-revalidate&quot; /&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot; /&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Expires&quot; content=&quot;0&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Cache-Control头域"><a href="#Cache-Control头域" class="headerlink" title="Cache-Control头域"></a>Cache-Control头域</h3><p>Cache-Control 指定请求和响应遵循的缓存机制。在请求消息或响应消息中设置Cache-Control并不会修改另一个消息处理过程中的缓存处理过程。请求时的缓存指令包括 <strong>no-cache</strong>、<strong>no-store</strong>、<strong>max-age</strong>、<strong>max-stale</strong>、<strong>min-fresh</strong>、<strong>only-if-cached</strong>，响应消息中的指令包括 <strong>public</strong>、<strong>private</strong>、<strong>no-cache</strong>、<strong>no-store</strong>、<strong>no-transform</strong>、<strong>must-revalidate</strong>、<strong>proxy-revalidate</strong>、<strong>max-age</strong>。各个消息中的指令含义如下</p>
+<ul>
+<li>Public指示响应可被任何缓存区缓存</li>
+<li>Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效</li>
+<li>no-cache指示请求或响应消息不能缓存</li>
+<li>no-store用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。</li>
+<li>must-revalidation/proxy-revalidation如果缓存的内容失效，请求必须发送到服务器/代理以进行重新验证</li>
+<li>max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应</li>
+<li>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应</li>
+<li>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</li>
+</ul>
+<p>更多具体信息可以移步<a href="https://baike.baidu.com/item/Cache-control/1885913?fr=aladdin" target="_blank" rel="noopener">百度百科</a>查看</p>
+<h3 id="pragma与no-cache用于定义页面缓存-不缓存页面"><a href="#pragma与no-cache用于定义页面缓存-不缓存页面" class="headerlink" title="pragma与no-cache用于定义页面缓存,不缓存页面"></a>pragma与no-cache用于定义页面缓存,不缓存页面</h3><h3 id="Expires可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。可以把该值设置为一个早已过去的时间，那么访问此网时若重复在地址栏按回车，那么每次都会重复访问。注意：必须使用GMT的时间格式"><a href="#Expires可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。可以把该值设置为一个早已过去的时间，那么访问此网时若重复在地址栏按回车，那么每次都会重复访问。注意：必须使用GMT的时间格式" class="headerlink" title="Expires可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。可以把该值设置为一个早已过去的时间，那么访问此网时若重复在地址栏按回车，那么每次都会重复访问。注意：必须使用GMT的时间格式"></a>Expires可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。可以把该值设置为一个早已过去的时间，那么访问此网时若重复在地址栏按回车，那么每次都会重复访问。注意：必须使用GMT的时间格式</h3><h3 id="如果这些还不够，就必须从代码中做文章。可以给每个文件加一个后缀，告诉浏览器这是一个新文件。这一效果通常选择在打包自动生成。"><a href="#如果这些还不够，就必须从代码中做文章。可以给每个文件加一个后缀，告诉浏览器这是一个新文件。这一效果通常选择在打包自动生成。" class="headerlink" title="如果这些还不够，就必须从代码中做文章。可以给每个文件加一个后缀，告诉浏览器这是一个新文件。这一效果通常选择在打包自动生成。"></a>如果这些还不够，就必须从代码中做文章。可以给每个文件加一个后缀，告诉浏览器这是一个新文件。这一效果通常选择在打包自动生成。</h3><h2 id="通过异步请求更新数据"><a href="#通过异步请求更新数据" class="headerlink" title="通过异步请求更新数据"></a>通过异步请求更新数据</h2><h3 id="使用ajax请求文件时加上请求头-If-Modified-Since-和-Cache-Control"><a href="#使用ajax请求文件时加上请求头-If-Modified-Since-和-Cache-Control" class="headerlink" title="使用ajax请求文件时加上请求头 If-Modified-Since 和 Cache-Control"></a>使用ajax请求文件时加上请求头 <strong>If-Modified-Since</strong> 和 <strong>Cache-Control</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url:&apos;/&apos;,</span><br><span class="line">  dataType:&apos;json&apos;,</span><br><span class="line">  beforeSend :function(xmlHttp)&#123; </span><br><span class="line">    xmlHttp.setRequestHeader(&quot;If-Modified-Since&quot;,&quot;0&quot;); </span><br><span class="line">    xmlHttp.setRequestHeader(&quot;Cache-Control&quot;,&quot;no-cache&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  async:false,</span><br><span class="line">  success:function(response)&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="你也可以试试直接使用-cache-false"><a href="#你也可以试试直接使用-cache-false" class="headerlink" title="你也可以试试直接使用 cache:false"></a>你也可以试试直接使用 <strong>cache:false</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url:&apos;/&apos;,</span><br><span class="line">  dataType:&apos;json&apos;,</span><br><span class="line">  data:&#123;&#125;,</span><br><span class="line">  cache:false, </span><br><span class="line">  ifModified :true,</span><br><span class="line">  async:false,</span><br><span class="line">  success:function(response)&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/ewm.jpg" alt="lost-dream 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/html5/" rel="tag"># html5</a>
+          
+            <a href="/blog/tags/cache/" rel="tag"># cache</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/11/15/全局设置npm镜像/" rel="next" title="全局设置npm镜像">
+                <i class="fa fa-chevron-left"></i> 全局设置npm镜像
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/12/10/关于vue-awesome-swiper以及vue-cli升级随笔/" rel="prev" title="关于vue-awesome-swiper以及vue-cli升级随笔">
+                关于vue-awesome-swiper以及vue-cli升级随笔 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/blog/images/touxiang.jpg"
+              alt="lost-dream" />
+          
+            <p class="site-author-name" itemprop="name">lost-dream</p>
+            <p class="site-description motion-element" itemprop="description">爱前端，爱技术，爱所有值得去爱的一切！！！</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/blog/archives">
+            
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lost-dream" target="_blank" title="GitHub">
+                  GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://gitee.com/lost-dream/events" target="_blank" title="码云">
+                  码云</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://home.cnblogs.com/u/1269036" target="_blank" title="博客园">
+                  博客园</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/0bafcccabadf/timeline" target="_blank" title="简书">
+                  简书</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过设置-meta-标签清除页面缓存"><span class="nav-number">1.</span> <span class="nav-text">通过设置 meta 标签清除页面缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control头域"><span class="nav-number">1.1.</span> <span class="nav-text">Cache-Control头域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pragma与no-cache用于定义页面缓存-不缓存页面"><span class="nav-number">1.2.</span> <span class="nav-text">pragma与no-cache用于定义页面缓存,不缓存页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。可以把该值设置为一个早已过去的时间，那么访问此网时若重复在地址栏按回车，那么每次都会重复访问。注意：必须使用GMT的时间格式"><span class="nav-number">1.3.</span> <span class="nav-text">Expires可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。可以把该值设置为一个早已过去的时间，那么访问此网时若重复在地址栏按回车，那么每次都会重复访问。注意：必须使用GMT的时间格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果这些还不够，就必须从代码中做文章。可以给每个文件加一个后缀，告诉浏览器这是一个新文件。这一效果通常选择在打包自动生成。"><span class="nav-number">1.4.</span> <span class="nav-text">如果这些还不够，就必须从代码中做文章。可以给每个文件加一个后缀，告诉浏览器这是一个新文件。这一效果通常选择在打包自动生成。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过异步请求更新数据"><span class="nav-number">2.</span> <span class="nav-text">通过异步请求更新数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ajax请求文件时加上请求头-If-Modified-Since-和-Cache-Control"><span class="nav-number">2.1.</span> <span class="nav-text">使用ajax请求文件时加上请求头 If-Modified-Since 和 Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你也可以试试直接使用-cache-false"><span class="nav-number">2.2.</span> <span class="nav-text">你也可以试试直接使用 cache:false</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered By Lost Dream</span>
+
+  
+</div>
+
+
+  <div class="powered-by">  个人专属</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">杜绝抄袭</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/blog/live2dw/assets/z16.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","log":false,"tagMode":false});</script></body>
+</html>
