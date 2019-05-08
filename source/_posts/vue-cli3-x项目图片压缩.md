@@ -12,7 +12,7 @@ npm i -D image-webpack-loader
 ```
 ## vue-cli3.x配置方法
 这个loader在图片解析的过程中生效，并且最好放在最开始执行，这样的话可以做到先压缩图片，然后再用url-loader处理小图片，可以有效地也就是说需要跟在图片的loader之后进行。也就是说在原本的webpack.config.js中应该是这样的：
-```js
+```
 {
 	test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
 	use: [
