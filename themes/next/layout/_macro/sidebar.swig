@@ -168,7 +168,18 @@
           {% endif %}
         </div>
       {% endif %}
-
+      {% if site.tags.length > 1 %}
+        <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcloud.js') }}"></script>
+        <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcanvas.js') }}"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title" style="margin-bottom: 0">tags</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="220" height="220" id="resCanvas">
+              {{ list_tags() }}
+            </canvas>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </aside>
 {% endmacro %}
