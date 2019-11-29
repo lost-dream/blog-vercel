@@ -4,7 +4,9 @@ date: 2019-05-07 17:04:27
 categories: [webpack, vue, compress]
 description: vue-cli3.x修改webpack配置，添加压缩图片功能
 ---
+
 ## 介绍
+
 [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader)是基于webpack的图像加载器模块，使用了[imagemin](https://github.com/kevva/imagemin)压缩PNG，JPEG，GIF，SVG和WEBP图像。
 ## 安装image-webpack-loader
 ```npm
