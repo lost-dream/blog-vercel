@@ -1,3 +1,4 @@
+---
 title: css伪元素
 tags: [css3]
 date: 2019-05-10 15:41:04
@@ -5,10 +6,12 @@ categories: [css3]
 description: css3关于伪元素那些你可能不知道的事
 ---
 ## 因为一个背景图引发的思考
+
 在最近的项目开发中我遇到了一个并不算麻烦的需求。需求大致是这样的
 > 想要一个有特殊边框的卡片，里面展示几行文本。
 
-当时的场景有些复杂，但还原之后基本就是这样的：       
+当时的场景有些复杂，但还原之后基本就是这样的：
+
 ```vue
 <template>
   <div class="eg1"></div>
@@ -23,7 +26,9 @@ description: css3关于伪元素那些你可能不知道的事
 }
 </style>
 ```
+
 然后使用伪元素创建一个白色的背景，放到卡片正中心就完成了。
+
 ```vue
 <template>
   <div class="eg1"></div>
@@ -50,13 +55,17 @@ description: css3关于伪元素那些你可能不知道的事
 }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/FKyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 本以为已经结束了，只要把返回的消息放在伪元素的`content`就可以了。但是消息是后端返回的呀，要怎么才能做到把文本填充进去呢？因此才去找了伪元素相关的资料。继而发现了伪元素非常多的用法。在这里总结一下。
 
 ## 除了content=''之外的其他高级用法
+
 ### 插入符号
+
 使用css的quotes可以在字符串两端添加自定义的字符
+
 ```vue
 <template>
   <h1>一段文字</h1>
