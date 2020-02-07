@@ -3,6 +3,9 @@
   word-break: break-word;
   font-weight: $posts-expand-title-font-weight
 }
+.post-title:hover {
+  animation: shake-it 0.5s reverse infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
 .posts-expand .post-title-link {
   display: inline-block;
   position: relative;
@@ -30,4 +33,19 @@
   }
 
   .fa { font-size: 16px; }
+}
+
+@keyframes shake-it {
+  0% {
+    text-shadow: 0 0 rgba(0,255,255,0.5), 0 0 rgba(255,0,0,0.5);
+  }
+  25% {
+    text-shadow: -2px 0 rgba(0,255,255,0.5), 2px 0 rgba(255,0,0,0.5);
+  }
+  50% {
+    text-shadow: -5px 0 rgba(0,255,255,0.5), 3px 0 rgba(255,0,0,0.5);
+  }
+  100% {
+    text-shadow: 3px 0 rgba(0,255,255,0.5), 5px 0 rgba(255,0,0,0.5);
+  }
 }
