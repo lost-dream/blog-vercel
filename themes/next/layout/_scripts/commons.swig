@@ -3,7 +3,8 @@
     'src/utils.js',
     'src/motion.js',
     'src/clipboard.min.js',
-    'src/clipboard-use.js'
+    'src/clipboard-use.js',
+    'src/loveheart.js'
   ]
 %}
 
