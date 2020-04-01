@@ -603,7 +603,7 @@ pace: true
 pace_theme: pace-theme-center-atom
 
 # Canvas-nest
-canvas_nest: true
+# canvas_nest: true
 
 # three_waves
 #three_waves: true

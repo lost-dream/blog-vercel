@@ -80,5 +80,7 @@
   {% include '_third-party/mathjax.swig' %}
   {% include '_third-party/scroll-cookie.swig' %}
   {% include '_third-party/exturl.swig' %}
+
+  <canvas id="canvas" width="1440" height="900" ></canvas>
 </body>
 </html>
