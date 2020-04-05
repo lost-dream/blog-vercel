@@ -1,4 +1,3 @@
-window.onload = function() {
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
   var s = window.screen;
@@ -23,6 +22,7 @@ window.onload = function() {
 
   var str = getRandomStr(10, 20);
   function draw() {
+    var basePos = Math.floor(Math.random() * 100)
     context.fillStyle = "rgba(238,238,238,.08)";
     context.fillRect(0, 0, W, H);
     context.font = "600 " + fontSize + "px  Georgia";
@@ -40,14 +40,13 @@ window.onload = function() {
   }
   function randColor() {
     return (
-      "rgb(" +
+      "rgba(" +
       Math.floor(Math.random() * 256) +
       "," +
       Math.floor(Math.random() * 256) +
       "," +
       Math.floor(Math.random() * 256) +
-      ")"
+      ", 0.62)"
     );
   }
-  setInterval(draw, 55);
-};
+  setInterval(draw, 60);

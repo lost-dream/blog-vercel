@@ -82,5 +82,8 @@
   {% include '_third-party/exturl.swig' %}
 
   <canvas id="canvas" width="1440" height="900" ></canvas>
+   {% include '_scripts/DigitalRain.swig' %}
+
+
 </body>
 </html>
