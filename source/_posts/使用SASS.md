@@ -1,28 +1,34 @@
+---
 title: 使用SASS
 tags: [sass]
 date: 2017-10-20 14:11:27
 categories: [NodeJs]
 description: Sass教程
+top: true
 ---
 ## Sass简介
-Sass 是一种css预处理器,CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作，减少工作量。        
+
+Sass 是一种css预处理器,CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作，减少工作量。
 除了Sass 还有一些其他常见的预处理语言
+
 + [Less](http://lesscss.cn/)
 + [Stylus](http://www.zhangxinxu.com/jq/stylus/)
 
 Sass 有时候也被称为 Scss,两者之间不同之处有以下两点：
+
 + 文件扩展名不同，Sass 是以“.sass”后缀为扩展名，而 SCSS 是以“.scss”后缀为扩展名
-+ 语法书写方式不同，Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，类似于Stylus；而 SCSS 的语法书类似于常规的 CSS。  
++ 语法书写方式不同，Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，类似于Stylus；而 SCSS 的语法书类似于常规的 CSS。
 
 来看一个示例：
-```
+
+```scss
 /* Sass 语法 */
 $font-stack: Helvetica, sans-serif
 $primary-color: #333
 body
   font: 100% $font-stack
   color: $primary-color
-  
+
 /* Scss 语法 */
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
@@ -31,26 +37,36 @@ body {
   color: $primary-color;
 }
 ```
+
 以上俩段编译的结果是同样的结果
-```
+
+```css
 body {
   font: 100% Helvetica, sans-serif;
   color: #333;
 }
 ```
+
 ## Sass 安装
+
 首先需要安装 [NodeJs](https://nodejs.org/en/)，通过命令行安装：
-```
+
+```node
 npm install -g node-sass
 ```
+
 ## Sass使用
+
 通过以下命令行监测 sourceFile.scss，将文件转变成 focusFile.css
-```
+
+```node
 node-sass -w sourceFile.scss focusFile.css
 ```
-顺带一提，如果你使用的是 [webstorm](http://www.jetbrains.com/webstorm/)，可以通过配置IDE的 Settings -- Tools -- File Watchers实现文件的监听，省去命令行的过程。这个不是这篇文章的重点，有意向的请自行 Google。    
+
+顺带一提，如果你使用的是 [webstorm](http://www.jetbrains.com/webstorm/)，可以通过配置IDE的 Settings -- Tools -- File Watchers实现文件的监听，省去命令行的过程。这个不是这篇文章的重点，有意向的请自行 Google。
 node-sass 参数
-```
+
+```shell
 -w, --watch                Watch a directory or file
 -r, --recursive            Recursively watch directories or files
 -o, --output               Output directory
@@ -74,21 +90,29 @@ node-sass 参数
 --functions                Path to .js file containing custom functions
 --help                     Print usage info
 ```
+
 ## Sass基本特性
+
 ### 注释
-* 使用类似 css的注释方式，使用"/\*"开头，使用"\*/"结束。
-* 使用类似JavaScript的注释方式，使用"//".
-* 两者的区别：前者会在编译的 css文件中显示，后者不会。
+
++ 使用类似 css的注释方式，使用"/\*"开头，使用"\*/"结束。
++ 使用类似JavaScript的注释方式，使用"//".
++ 两者的区别：前者会在编译的 css文件中显示，后者不会。
+
 ### 数据类型
+
 Sass 和 JavaScript 语言类似，也具有自己的数据类型，在 Sass 中包含以下几种数据类型：
+
 1. 数字: 如，1、 2、 13、 10px；
 2. 字符串：有引号字符串或无引号字符串，如，”foo” ‘bar’ baz；
 3. 颜色：如，blue, #04a3f9, rgba(255,0,0,0.5);
 4. 布尔型：如，true, false；
 5. 空值：如，null；
 6. 值列表：用空格或者逗号分开，如，1.5em 1em 0 2em , Helvetica, Arial, sans-serif；
+
 ### 变量：通过$声明变量，变量有全局变量和局部变量的概念。
-```
+
+```scss
 $brand-primary : darken(#428bca, 6.5%) !default;
 $btn-primary-color : #fff !default;
 $btn-primary-bg : $brand-primary !default;
@@ -115,8 +139,10 @@ span {
 }
 
 ```
+
 编译之后的结果
-```
+
+```css
 .block {
   color: orange;
 }
@@ -127,15 +153,17 @@ span {
   color: orange;
 }
 ```
+
 ### 嵌套结构
-```
+
+```scss
 nav {
   a {
     color: red;
     header & {
       color:green;
     }
-  }  
+  }
 }
 
 .box {
@@ -159,9 +187,12 @@ nav {
 
 /* 但是也注意不可以无节制地嵌套，会加大浏览器的负担 */
 ```
+
 ### 混合宏
+
 混合宏类似于 js中的函数，用来实现某个特定的功能。一次定义之后可以方便的调用。通过@mixin定义混合宏，通过@include调用混合宏。**混合宏会产生亢余代码**。
-```
+
+```scss
 /* 没有参数的混合宏可以省略() */
 @mixin border-radius{
   -webkit-border-radius: 5px;
@@ -210,9 +241,12 @@ button{
   @include box-shadow(0 0 1px rgba(#000,.5),0 0 2px rgba(#000,.2));
 }
 ```
+
 ### 扩展/继承
+
 扩展/继承的作用类似于混合宏，优势是不会产生亢余代码，缺点是可以使用的情况不如混合宏常见，使用起来也不如混合宏灵活。
-```
+
+```css
 .btn {
   border: 1px solid #ccc;
   padding: 6px 10px;
@@ -231,8 +265,10 @@ button{
   @extend .btn;
 }
 ```
+
 ### 占位符
-```
+
+```scss
 %mt5 {
   margin-top: 5px;
 }
@@ -244,9 +280,12 @@ button{
   @extend %pt5;
 }
 ```
+
 ### 插值
+
 Sass允许在#{}内部解析变量
-```
+
+```scss
 $properties: (margin, padding);
 @mixin set-value($side, $value) {
   @each $prop in $properties {
@@ -257,8 +296,10 @@ $properties: (margin, padding);
   @include set-value(top, 14px);
 }
 ```
+
 ### 运算
-```
+
+```scss
 .box {
   width: 20px + 8in;
 }
@@ -271,7 +312,7 @@ $sidebar-width: 200px;
   width: 10px * 2;
 }
 .box {
-  width: (100px / 2);  
+  width: (100px / 2);
 }
 p {
   font: 10px/8px;             // 纯 CSS，不是除法运算
@@ -282,7 +323,7 @@ p {
   margin-left: 5px + 8px/2px; // 使用了加（+）号，是除法运算
 }
 .box {
-  width: ((220px + 720px) - 11 * 20 ) / 12 ;  
+  width: ((220px + 720px) - 11 * 20 ) / 12 ;
 }
 p {
   color: #010203 + #040506;
@@ -294,9 +335,12 @@ $content: "Hello" + "" + "Sass!";
   content: " #{$content} ";
 }
 ```
+
 ## Sass高级特性
+
 ### @if
-```
+
+```scss
 @mixin blockOrHidden($boolean:true) {
   @if $boolean {
     display: block;
@@ -312,8 +356,10 @@ $content: "Hello" + "" + "Sass!";
   @include blockOrHidden(false);
 }
 ```
+
 ### @for
-```
+
+```scss
 @for $i from <start> through <end>
 @for $i from <start> to <end>
 @for $i from 1 through 3 {
@@ -322,8 +368,7 @@ $content: "Hello" + "" + "Sass!";
 @for $i from 1 to 3 {
   .item-#{$i} { width: 2em * $i; }
 }
-```
-```
+
 $grid-prefix: span !default;
 $grid-width: 60px !default;
 $grid-gutter: 20px !default;
@@ -337,11 +382,13 @@ $grid-gutter: 20px !default;
   .#{$grid-prefix}#{$i}{
     width: $grid-width * $i + $grid-gutter * ($i - 1);
     @extend %grid;
-  }  
+  }
 }
 ```
+
 ### @each
-```
+
+```scss
 $list: adam john wynn mason kuroir; //$list 就是一个列表
 @mixin author-images {
     @each $author in $list {
@@ -354,8 +401,10 @@ $list: adam john wynn mason kuroir; //$list 就是一个列表
     @include author-images;
 }
 ```
+
 ## Sass中的函数
-```
+
+```scss
 //自定义函数
 @function double($n) {
   @return $n * 2;
@@ -364,46 +413,51 @@ $list: adam john wynn mason kuroir; //$list 就是一个列表
   width: double(5px);
 }
 ```
+
 Sass中的内置函数
-* 字符串函数
-	+ unquote
-	+ quote
-	+ To-upper-case
-	+ To-lower-case
-	+ percentage
-	+ round
-	+ ceil
-	+ floor
-	+ abs
-	+ min
-	+ max
-	+ random
-* 列表函数
-	- length  取列表数据的长度
-	- nth  (10px 20px 30px, 1)
-	- join  join(10px 20px, 30px 40px)
-	- append  append(10px 20px ,30px)
-	- zip  zip(1px 2px 3px,solid dashed dotted,green blue red)
-	- index  index(1px solid red, solid)
-	- type-of  type-of(100)
-	- unit  取单位
-	- unitless  判断一个值是否带有单位
-	- comparable  判断两个数是否可以进行加减合并
-	- if(true,1px,2px)
-* Maps函数
-	+ map-get
-	+ map-has-key
-	+ map-keys
-	+ map-values
-	+ map-merge
-	+ map-remove
-	+ keywords
-```
+
++ 字符串函数
+  + unquote
+  + quote
+  + To-upper-case
+  + To-lower-case
+  + percentage
+  + round
+  + ceil
+  + floor
+  + abs
+  + min
+  + max
+  + random
+
++ 列表函数
+  + length  取列表数据的长度
+  + nth  (10px 20px 30px, 1)
+  + join  join(10px 20px, 30px 40px)
+  + append  append(10px 20px ,30px)
+  + zip  zip(1px 2px 3px,solid dashed dotted,green blue red)
+  + index  index(1px solid red, solid)
+  + type-of  type-of(100)
+  + unit  取单位
+  + unitless  判断一个值是否带有单位
+  + comparable  判断两个数是否可以进行加减合并
+  + if(true,1px,2px)
+
++ Maps函数
+  + map-get
+  + map-has-key
+  + map-keys
+  + map-values
+  + map-merge
+  + map-remove
+  + keywords
+
+```scss
 $map: (
   $key1: value1,
   $key2: value2,
   $key3: value3
-)   
+)
 
 $map: (
   key1: value1,
@@ -431,8 +485,7 @@ $theme-color: (
       link-color: #d4e
   )
 );
-```
-```
+
 /* map-get */
 $social-colors: (
   dribble: #ea4c89,
@@ -449,8 +502,7 @@ $social-colors: (
   font-size: 12px;
   color: map-get($social-colors,weibo);
 }
-```
-```
+
 /* map中的容错函数 */
    @function colors($color){
      @if not map-has-key($social-colors,$color){
@@ -461,8 +513,7 @@ $social-colors: (
    .btn-dribble {
      color: colors(dribble);
    }
-```
-```
+
 /* each 遍历 map */
 @each $name in map-keys($social-colors){
   .btn-#{$name}{
@@ -477,8 +528,7 @@ $social-colors: (
 
 /*得到所有的值*/
 map-values($social-colors)
-```
-```
+
 $color: (
   text: #f36,
   link: #f63,
@@ -494,30 +544,31 @@ $newcolor = map-merge($color, $typo);
 /* 得到新值 */
 $map:map-remove($social-colors,dribble);
 ```
-* 颜色函数
-	+ rgb
-	+ rgba
-	+ red
-	+ green
-	+ blue
-	+ mix  混合两种颜色 第三个参数为第一种颜色的比例  mix(blue,red,20%)
-	+ lighten  lighten(red, 20%);
-	+ darken  darken(red,30%);
-	+ saturate  改变颜色的饱和度 参数单位为百分比 saturate(blue,20%)
-	+ desaturate
-	+ adjust-hue  通过调整色相 adjust-hue(blue,30deg)
-	+ grayscale  直接让饱和度为0  grayscale(blue);
-	+ alpha  获取透明度
-	+ opacity  获取透明度
-	+ rgba
-	+ opacify  增加透明度
-	+ fade-in  增加透明度
-	+ transparentize  减少透明度
-	+ fade-out  减少透明度
-```
+
++ 颜色函数
+  + rgb
+  + rgba
+  + red
+  + green
+  + blue
+  + mix  混合两种颜色 第三个参数为第一种颜色的比例  mix(blue,red,20%)
+  + lighten  lighten(red, 20%)
+  + darken  darken(red,30%)
+  + saturate  改变颜色的饱和度 参数单位为百分比 saturate(blue,20%)
+  + desaturate
+  + adjust-hue  通过调整色相 adjust-hue(blue,30deg)
+  + grayscale  直接让饱和度为0  grayscale(blue)
+  + alpha  获取透明度
+  + opacity  获取透明度
+  + rgba
+  + fade-in  增加透明度
+  + transparentize  减少透明度
+  + fade-out  减少透明度
+
+```scss
 <ul class="swatches red">
   <li></li>
-  ...      
+  ...
   <li></li>
 </ul>
 <ul class="swatches orange">
@@ -593,7 +644,7 @@ $bgc: #fff;
   }
 }
 
-.swatches li {    
+.swatches li {
   width: 4.7619047619%;
   float: left;
   height: 60px;
@@ -657,10 +708,13 @@ ul.black {
 }
 </style>
 ```
+
 ## Sass的@规则
-* @import
-* @media
-```
+
++ @import
++ @media
+
+```scss
 .sidebar {
   width: 300px;
   @media screen and (orientation: landscape) {
@@ -685,13 +739,15 @@ $value: 1.5;
   }
 }
 ```
-* @extend
-* @at-root
-* @debug
-* @warn
-* @error
-* @content
-```
+
++ @extend
++ @at-root
++ @debug
++ @warn
++ @error
++ @content
+
+```scss
 $small : 750px;
 @mixin  onsmall {
   @media  only screen and (max-width: $small){
@@ -706,8 +762,10 @@ $small : 750px;
   }
 }
 ```
+
 ## 最后附上一个rem的例子
-```
+
+```scss
 //以750px( iphone6 )为基准定义其他分辨率下的rem
 @mixin useRem($size){
   $device-list : 320px, 375px , 414px;

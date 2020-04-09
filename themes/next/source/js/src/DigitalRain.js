@@ -5,11 +5,12 @@
   var H = canvas.height;
   canvas.width = W;
   canvas.height = H;
-  var fontSize = 20;
+  var fontSize = 16;
   var columns = Math.floor(W / fontSize);
   var drops = [];
   for (var i = 0; i < columns; i++) {
-    drops.push(0);
+    var hrefH = Math.floor(H / fontSize)
+    drops.push(Math.floor(Math.random() * hrefH));
   }
   function getRandomStr(minLength, maxLength) {
     var result = [];
@@ -22,7 +23,6 @@
 
   var str = getRandomStr(10, 20);
   function draw() {
-    var basePos = Math.floor(Math.random() * 100)
     context.fillStyle = "rgba(238,238,238,.08)";
     context.fillRect(0, 0, W, H);
     context.font = "600 " + fontSize + "px  Georgia";

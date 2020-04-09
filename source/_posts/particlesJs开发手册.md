@@ -1,26 +1,31 @@
+---
 title: particlesJs开发手册
 date: 2017-10-10 11:29:18
 tags: [canvas,粒子动画]
 categories: [JavaScript]
 description: particles.js Api手册
 ---
-quick start
----
-首先需要引用particles.js，然后创建一个空元素。    
+## quick start
+
+首先需要引用particles.js，然后创建一个空元素。
+
+```html
+  <div id="particles"></div>
+  ......
+  <script src="particles.js"></script>
 ```
-	<div id="particles"></div>
-	      ......
-	<script src="particles.js"></script>
-  
-```
+
 然后在js中写配置就可以了
-```
+
+```js
 particlesJS.load('particles', {
-	......
-});	
+  // ......
+});
 ```
+
 先展示完整的配置项示例，之后附上完整的api。
-```
+
+```json
 	{
           "particles": {
             "number": {
@@ -127,10 +132,11 @@ particlesJS.load('particles', {
           "retina_detect": true
         }
 ```
-Api手册
----
+
+## Api手册
+
 | 键值| 参数说明|示例/默认值|
-| ------------- |:-------------:| :-----:|  
+| ------------- |:-------------:| :-----:|
 | particles.number.value| number<br>数量|40|
 |particles.number.density.enable|boolean|true / false|
 |particles.number.density.value_area|number<br>区域散布密度大小|800|
