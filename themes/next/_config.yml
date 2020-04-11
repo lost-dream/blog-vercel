@@ -708,3 +708,10 @@ images: images
 
 # Theme version
 version: 5.1.2
+
+cursor_effect:
+  enabled: true
+  # type: love
+  type: fireworks
+  # type: explosion
+  # type: text
