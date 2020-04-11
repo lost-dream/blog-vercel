@@ -21,9 +21,9 @@
     return result.join("");
   }
 
-  var str = getRandomStr(10, 20);
+  var str = getRandomStr(10,15);
   function draw() {
-    context.fillStyle = "rgba(238,238,238,.08)";
+    context.fillStyle = "rgba(238,238,238,.06)";
     context.fillRect(0, 0, W, H);
     context.font = "600 " + fontSize + "px  Georgia";
     context.fillStyle = randColor();
