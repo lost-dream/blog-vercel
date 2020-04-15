@@ -102,10 +102,10 @@ scheme: Gemini
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/lost-dream
-  码云: https://gitee.com/lost-dream/events
-  博客园: https://home.cnblogs.com/u/1269036
-  简书: http://www.jianshu.com/users/0bafcccabadf/timeline
+  # GitHub: https://github.com/lost-dream
+  # 码云: https://gitee.com/lost-dream/events
+  # 博客园: https://home.cnblogs.com/u/1269036
+  # 简书: http://www.jianshu.com/users/0bafcccabadf/timeline
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter

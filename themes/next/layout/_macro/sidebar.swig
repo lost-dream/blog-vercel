@@ -34,7 +34,7 @@
               alt="{{ theme.author }}" />
           {% endif %}
             <p class="site-author-name" itemprop="name">{{ theme.author }}</p>
-            <p class="site-description motion-element" itemprop="description">{#
+            <p class="site-description motion-element" itemprop="description" style="margin-bottom: 0">{#
           #}{% if theme.seo %}{#
             #}{{ theme.signature }}{#
           #}{% else %}{#
@@ -42,6 +42,8 @@
           #}{% endif %}{#
           #}</p>
         </div>
+
+          {% include '../_custom/sidebar-clock.swig' %}
 
         <nav class="site-state motion-element">
 
@@ -154,6 +156,7 @@
             {% else %}
               <div class="post-toc-content">{{ toc }}</div>
             {% endif %}
+          {% include '../_custom/sidebar-clock.swig' %}
 
           </div>
         </section>
@@ -172,7 +175,7 @@
         <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcloud.js') }}"></script>
         <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcanvas.js') }}"></script>
         <div class="widget-wrap">
-          <h3 class="widget-title" style="margin-bottom: 0">tags</h3>
+          <h3 class="widget-title" style="margin-bottom: 0;margin-top: 0;">tags</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="220" height="220" id="resCanvas">
               {{ list_tags() }}

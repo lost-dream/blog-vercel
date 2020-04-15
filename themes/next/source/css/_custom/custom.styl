@@ -53,3 +53,50 @@
   width: auto;
   z-index: -1;
 }
+
+// 侧边栏时钟
+.sidebar-clock {
+  width: 100%;
+  height: 60px;
+  svg {
+    height:100%;
+    width:100%;
+  }
+  .words {
+    font-size:50px;
+    font-weight:bold;
+    text-transform:uppercase;
+    fill:none;
+    stroke-width:3px;
+    stroke-dasharray:90,310;
+    animation-name:drawing;
+    animation-duration:8s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+  }
+  .words-1 {
+    stroke:deepskyblue;
+    // text-shadow:0 0 5px deepskyblue;
+    animation-delay:-2s;
+  }
+  .words-2 {
+    stroke:lightseagreen;
+    // text-shadow:0 0 5px lightseagreen;
+    animation-delay:-4s;
+  }
+  .words-3 {
+    stroke:orange;
+    // text-shadow:0 0 5px orange;
+    animation-delay:-6s;
+  }
+  .words-4 {
+    stroke:purple;
+    // text-shadow:0 0 5px purple;
+    animation-delay:-8s;
+  }
+  @keyframes drawing {
+    100% {
+      stroke-dashoffset:-400;
+    }
+  }
+}
