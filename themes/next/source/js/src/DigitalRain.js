@@ -1,52 +1,68 @@
-  var canvas = document.getElementById("canvas");
-  var context = canvas.getContext("2d");
-  var s = window.screen;
-  var W = (canvas.width = s.width);
-  var H = canvas.height;
-  canvas.width = W;
-  canvas.height = H;
-  var fontSize = 16;
-  var columns = Math.floor(W / fontSize);
-  var drops = [];
-  for (var i = 0; i < columns; i++) {
-    var hrefH = Math.floor(H / fontSize)
-    drops.push(Math.floor(Math.random() * hrefH));
+/**
+ * @author singleDogNo.1
+ * @param {options.el} string 渲染画布的选择器
+ * @param {options.fontSize} string|number 下落的字体的大小
+ * @param {options. str} string 下落的文字（默认 10 - 15 位随机字母）
+ * @param {options. str} string 文字的颜色（默认随机颜色）
+ */
+class DigitalPaRain {
+  constructor(options) {
+    this.canvas = document.querySelector(options.el);
+    this.fontSize = options.fontSize || 20;
+    this.str = options.str || this.getRandomStr(10, 20);
+    this.color = options.color;
+
+    this.ctx = this.canvas.getContext("2d");
+    this.W = window.screen.width;
+    this.H = window.screen.height;
+    this.canvas.width = this.W;
+    this.canvas.height = this.H;
+    this.columns = Math.floor(this.W / this.fontSize);
+    this.lines = Math.floor(this.H / this.fontSize);
+    this.drops = [];
+    this.run();
   }
-  function getRandomStr(minLength, maxLength) {
-    var result = [];
-    for (var i = minLength; i < maxLength; i++) {
-      var ranNum = Math.ceil(Math.random() * 25);
+  getRandomStr(minLength, maxLength) {
+    const result = [];
+    for (let i = minLength; i < maxLength; i++) {
+      const ranNum = Math.ceil(Math.random() * 25);
       result.push(String.fromCharCode(65 + ranNum));
     }
     return result.join("");
   }
-
-  var str = getRandomStr(10,15);
-  function draw() {
-    context.fillStyle = "rgba(238,238,238,.06)";
-    context.fillRect(0, 0, W, H);
-    context.font = "600 " + fontSize + "px  Georgia";
-    context.fillStyle = randColor();
-    for (var i = 0; i < columns; i++) {
-      var index = Math.floor(Math.random() * str.length);
-      var x = i * fontSize;
-      var y = drops[i] * fontSize;
-      context.fillText(str[index], x, y);
-      if (y >= canvas.height && Math.random() > 0.99) {
-        drops[i] = 0;
-      }
-      drops[i]++;
+  draw(str) {
+    this.ctx.fillStyle = "rgba(238,238,238,.06)";
+    this.ctx.fillRect(0, 0, this.W, this.H);
+    this.ctx.font = `600  ${this.fontSize}px  Georgia`;
+    this.ctx.fillStyle = this.color ? this.color : this.randColor();
+    for (let i = 0; i < this.columns; i++) {
+      const index = Math.floor(Math.random() * str.length);
+      const x = i * this.fontSize;
+      const y = this.drops[i] * this.fontSize;
+      this.ctx.fillText(str[index], x, y);
+      y >= this.canvas.height && Math.random() > 0.99
+        ? (this.drops[i] = 0)
+        : this.drops[i]++;
     }
   }
-  function randColor() {
-    return (
-      "rgba(" +
-      Math.floor(Math.random() * 256) +
-      "," +
-      Math.floor(Math.random() * 256) +
-      "," +
-      Math.floor(Math.random() * 256) +
-      ", 0.62)"
-    );
+  randColor() {
+    return `rgba(${Math.floor(Math.random() * 256)},${Math.floor(
+      Math.random() * 256
+    )},${Math.floor(Math.random() * 256)},0.62)`;
   }
-  setInterval(draw, 60);
+  run() {
+    for (let i = 0; i < this.columns; i++) {
+      this.drops.push(Math.floor(Math.random() * this.lines));
+    }
+    setInterval(() => {
+      this.draw(this.str);
+    }, 60);
+  }
+}
+
+new DigitalPaRain({
+  el: "#canvas",
+  // fontSize: 20,
+  // str: "123",
+  // color: "green",
+});
