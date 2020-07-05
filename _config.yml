@@ -105,3 +105,9 @@ deploy:
   type: git
   repo: https://github.com/lost-dream/blog.git
   branch: master
+# search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000

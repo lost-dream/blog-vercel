@@ -6,35 +6,28 @@ categories: [NodeJs]
 description: Sass教程
 top: true
 ---
+> 本文参考[sass 中文网](https://www.sass.hk/docs/),仅作为个人速查文档使用
+
 ## Sass简介
 
-Sass 是一种css预处理器,CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作，减少工作量。
-除了Sass 还有一些其他常见的预处理语言
+Sass 是一款强化 CSS 的辅助工具，它在 CSS 语法的基础上增加了变量 (variables)、嵌套 (nested rules)、混合 (mixins)、导入 (inline imports) 等高级功能，这些拓展令 CSS 更加强大与优雅。使用 Sass 以及 Sass 的样式库（如 Compass）有助于更好地组织管理样式文件，以及更高效地开发项目。
 
-+ [Less](http://lesscss.cn/)
-+ [Stylus](http://www.zhangxinxu.com/jq/stylus/)
+## 语法风格
 
-Sass 有时候也被称为 Scss,两者之间不同之处有以下两点：
+Sass 有两种写法，一种是靠缩进代替花括号代替选择器，用换行代替分号，是一种简写格式，这种格式的文件以`.sass`结尾。另一种写法类似 css 写法，以`.scss`结尾。
 
-+ 文件扩展名不同，Sass 是以“.sass”后缀为扩展名，而 SCSS 是以“.scss”后缀为扩展名
-+ 语法书写方式不同，Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，类似于Stylus；而 SCSS 的语法书类似于常规的 CSS。
-
-来看一个示例：
+> 本文均为 scss 格式
 
 ```scss
 /* Sass 语法 */
-$font-stack: Helvetica, sans-serif
-$primary-color: #333
 body
-  font: 100% $font-stack
-  color: $primary-color
+  font-size: 14px
+  color: #333
 
 /* Scss 语法 */
-$font-stack: Helvetica, sans-serif;
-$primary-color: #333;
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
+  font-size: 14px;
+  color: #333;
 }
 ```
 
@@ -49,6 +42,8 @@ body {
 
 ## Sass 安装
 
+这里以 node-sass 为例
+
 首先需要安装 [NodeJs](https://nodejs.org/en/)，通过命令行安装：
 
 ```node
@@ -57,135 +52,1163 @@ npm install -g node-sass
 
 ## Sass使用
 
-通过以下命令行监测 sourceFile.scss，将文件转变成 focusFile.css
+在命令中运行 sass
 
 ```node
-node-sass -w sourceFile.scss focusFile.css
+node-sass input.scss output.css
 ```
 
-顺带一提，如果你使用的是 [webstorm](http://www.jetbrains.com/webstorm/)，可以通过配置IDE的 Settings -- Tools -- File Watchers实现文件的监听，省去命令行的过程。这个不是这篇文章的重点，有意向的请自行 Google。
-node-sass 参数
+命令行监测单个 sass 文件，每次修改自动保存
 
-```shell
--w, --watch                Watch a directory or file
--r, --recursive            Recursively watch directories or files
--o, --output               Output directory
--x, --omit-source-map-url  Omit source map URL comment from output
--i, --indented-syntax      Treat data from stdin as sass code (versus scss)
--q, --quiet                Suppress log output except on error
--v, --version              Prints version info
---output-style             CSS output style (nested | expanded | compact | compressed)
---indent-type              Indent type for output CSS (space | tab)
---indent-width             Indent width; number of spaces or tabs (maximum value: 10)
---linefeed                 Linefeed style (cr | crlf | lf | lfcr)
---source-comments          Include debug info in output
---source-map               Emit source map
---source-map-contents      Embed include contents in map
---source-map-embed         Embed sourceMappingUrl as data URI
---source-map-root          Base path, will be emitted in source-map as is
---include-path             Path to look for imported files
---follow                   Follow symlinked directories
---precision                The amount of precision allowed in decimal numbers
---importer                 Path to .js file containing custom importer
---functions                Path to .js file containing custom functions
---help                     Print usage info
+```node
+node-sass -w input.scss output.css
 ```
 
-## Sass基本特性
+监视整个文件夹的变化
 
-### 注释
-
-+ 使用类似 css的注释方式，使用"/\*"开头，使用"\*/"结束。
-+ 使用类似JavaScript的注释方式，使用"//".
-+ 两者的区别：前者会在编译的 css文件中显示，后者不会。
-
-### 数据类型
-
-Sass 和 JavaScript 语言类似，也具有自己的数据类型，在 Sass 中包含以下几种数据类型：
-
-1. 数字: 如，1、 2、 13、 10px；
-2. 字符串：有引号字符串或无引号字符串，如，”foo” ‘bar’ baz；
-3. 颜色：如，blue, #04a3f9, rgba(255,0,0,0.5);
-4. 布尔型：如，true, false；
-5. 空值：如，null；
-6. 值列表：用空格或者逗号分开，如，1.5em 1em 0 2em , Helvetica, Arial, sans-serif；
-
-### 变量：通过$声明变量，变量有全局变量和局部变量的概念。
-
-```scss
-$brand-primary : darken(#428bca, 6.5%) !default;
-$btn-primary-color : #fff !default;
-$btn-primary-bg : $brand-primary !default;
-$btn-primary-border : darken($btn-primary-bg, 5%) !default;
-.btn-primary {
-   background-color: $btn-primary-bg;
-   color: $btn-primary-color;
-   border: 1px solid $btn-primary-border;
-}
-
-/* 局部变量 */
-$color: orange;
-.block {
-  color: $color;
-}
-em {
-  $color: red;
-  a {
-    color: $color;
-  }
-}
-span {
-  color: $color;
-}
-
+```node
+sass --watch app/sass:public/stylesheets
 ```
 
-编译之后的结果
+更多命令通过`sass --help`查看帮助
 
-```css
-.block {
-  color: orange;
-}
-em a{
-    color: red;
-}
-span {
-  color: orange;
-}
-```
+## 注释
+
+Sass 支持标准的 CSS 多行注释 `/* */`，以及单行注释 `//`，前者会 被完整输出到编译后的 CSS 文件中，而后者则不会。
+
+## Sass功能扩展
 
 ### 嵌套结构
 
+Sass 允许将一套 CSS 样式嵌套进另一套样式中，内层的样式将它外层的选择器作为父选择器。
+
+> 注意不可以无节制地嵌套，会加大浏览器的负担
+
 ```scss
-nav {
-  a {
+#main {
+  width: 97%;
+
+  p, div {
+    font-size: 2em;
+    a { font-weight: bold; }
+  }
+
+  pre { font-size: 3em; }
+}
+```
+
+编译为
+
+```scss
+#main {
+  width: 97%;
+}
+#main p, #main div {
+  font-size: 2em;
+}
+#main p a, #main div a {
+  font-weight: bold;
+}
+#main pre {
+  font-size: 3em;
+}
+```
+
+嵌套功能避免了重复输入父选择器，而且令复杂的 CSS 结构更易于管理
+
+### 父选择器
+
+在嵌套 CSS 规则时，有时也需要直接使用嵌套外层的父选择器，例如，当给某个元素设定 hover 样式时，或者当 body 元素有某个 classname 时，可以用 & 代表嵌套规则外层的父选择器。
+
+```scss
+.box {
+  color: #333;
+  &:hover {
     color: red;
-    header & {
-      color:green;
+  }
+  $.active {
+    color: red;
+  }
+}
+```
+
+编译为
+
+```css
+.box {
+  color: #333;
+}
+.box:hover {
+  color: red;
+}
+.box.active {
+  color: red;
+}
+```
+
+值得注意的有两点:
+
+* 如果包含多层嵌套关系， &会逐层向下传递
+* &在编译时会完全解析为外层的父选择器名称，你可以以任何你需要的方式来操作它
+
+```scss
+.menu {
+  color: #333;
+  li {
+    &:hover {
+      color: red;
+    }
+  }
+  &-item {
+    color: blue;
+  }
+}
+```
+
+编译为
+
+```css
+.menu {
+  color: #333;
+}
+.menu li:hover {
+  color: red;
+}
+.menu .menu-item {
+  color: green;
+}
+```
+
+### 属性嵌套
+
+有些 CSS 属性遵循相同的命名空间 (namespace)，比如 `font-family`, `font-size`, `font-weight` 都以 `font` 作为属性的命名空间。为了便于管理这样的属性，同时也为了避免了重复输入，Sass 允许将属性嵌套在命名空间中。
+
+```scss
+body {
+  font: {
+    family: 'iconfont';
+    size: 20px;
+    weight: bold;
+  }
+}
+```
+
+编译为
+
+```css
+body {
+  font-family: 'iconfont';
+  font-size: 20px;
+  font-weight: bold;
+}
+```
+
+## SassScript
+
+Sass在 css 的基础上提供了一些名为 SassScript 的功能，允许使用变量、运算、函数等额外的功能。这也是 Sass 语言最强大的地方。
+
+### 变量
+
+SassScript 最普遍的用法就是变量，变量以`$`开头，赋值方法与 CSS 属性的写法一样
+
+```scss
+$width: 20px;
+```
+
+变量可以直接使用
+
+```scss
+.box {
+  width: $width;
+}
+```
+
+编译为
+
+```css
+.box {
+  width: 20px;
+}
+```
+
+变量支持块级作用域，嵌套规则内定义的变量只能在嵌套规则内使用（局部变量），不在嵌套规则内定义的变量则可在任何地方使用（全局变量）。
+
+```scss
+.menu {
+  $width: 100px;
+  width: $width;
+  .menu-item {
+    $width: 20px;
+    width: $width;
+  }
+}
+```
+
+编译为
+
+```css
+.menu {
+  width: 100px;
+}
+.menu .menu-item {
+  width: 20px;
+}
+```
+
+可以通过添加`!global`将局部变量转换为全局变量
+
+### 数据类型
+
+sassScript支持 7 种主要的数据类型:
+
+* 数字 `1, 2, 3px`
+* 字符串，有引号字符串与无引号字符串 `"foo", 'bar', baz`
+* 颜色 `blue, #04a3f9, rgba(255,0,0,0.5)`
+* 布尔型 `true, false`
+* 空值 `null`
+* 数组 (list)，用空格或逗号作分隔符 `1.5em 1em 0 2em, Helvetica, Arial, sans-serif`
+* maps, 相当于 JavaScript 的 object `(key1: value1, key2: value2)`
+
+SassScript 也支持其他 CSS 属性值，比如 Unicode 字符集，或 !important 声明。然而Sass 不会特殊对待这些属性值，一律视为无引号字符串。
+
+### 插值语句 `#{}`
+
+通过 #{} 插值语句可以在选择器或属性名中使用变量,方式**等同于es6语法中的`${}`**
+
+```scss
+$name: foo;
+$attr: border;
+$color: blue;
+p.#{$name} {
+  #{$attr}-color: #{$color};
+}
+```
+
+编译为
+
+```css
+p.foo {
+  border-color: blue;
+}
+```
+
+使用插值可以避免 Sass 运行运算表达式，直接编译 CSS。
+
+```scss
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  $width: 20px;
+  font: #{$font-size}/#{$line-height};
+  width: calc(100% - #{$width});
+}
+```
+
+编译为
+
+```css
+p {
+  font: 12px/30px;
+  width: calc(100% - 20px);
+}
+```
+
+### 定义初始值
+
+可以在变量的结尾添加 `!default` 给一个未通过 `!default` 声明赋值的变量赋值，此时，如果变量已经被赋值，不会再被重新赋值，但是如果变量还没有被赋值，则会被赋予新的值。
+
+```scss
+$content: "First content";
+$content: "Second content?" !default;
+$new_content: "First time reference" !default;
+
+#main {
+  content: $content;
+  new-content: $new_content;
+}
+```
+
+编译为
+
+```css
+#main {
+  content: "First content";
+  new-content: "First time reference"; }
+```
+
+### 运算
+
+所有数据类型均支持相等运算 == 或 !=，此外，每种数据类型也有其各自支持的运算方式。
+
+#### 数字运算
+
+SassScript 支持数字的加减乘除、取整等运算 `(+, -, *, /, %)`，如果必要会在不同单位间转换值。
+
+```scss
+p {
+  width: 1in + 8pt;
+}
+```
+
+编译为
+
+```css
+p {
+  width: 1.111in; }
+```
+
+关系运算 <, >, <=, >= 也可用于数字运算，相等运算 ==, != 可用于所有数据类型。
+
+##### 除法运算
+
+`/` 在 CSS 中原本起到分隔数字的用途，SassScript 作为 CSS 语言的拓展在支持原本功能的同时也赋予了 `/` 除法运算的功能。也就是说，在 SassScript 中，`/`可以作为分隔符，也可以作为除法运算符。
+
+以下三种情况 `/` 将被视为除法运算符号：
+
+* 如果值，或值的一部分，是变量或者函数的返回值
+* 如果值被圆括号包裹
+* 如果值是算数表达式的一部分
+
+```scss
+p {
+  font: 10px/8px;             // css语法，作为分隔符使用
+  $width: 1000px;
+  width: $width/2;            // 使用了变量，是除法运算
+  width: round(1.5)/2;        // 使用了函数，是除法运算
+  height: (500px/2);          // 使用了括号，是除法运算
+  margin-left: 5px + 8px/2px; // 使用了加号，是除法运算
+}
+```
+
+编译为
+
+```css
+p {
+  font: 10px/8px;
+  width: 500px;
+  height: 250px;
+  margin-left: 9px; }
+```
+
+如果需要使用变量，同时又要确保 `/` 不做除法运算而是完整地编译到 CSS 文件中，只需要用 `#{}` 插值语句将变量包裹。
+
+```scss
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}
+```
+
+编译为
+
+```css
+p {
+  font: 12px/30px; }
+```
+
+#### 颜色值运算
+
+颜色值的运算是分段计算进行的，也就是分别计算红色，绿色，以及蓝色的值
+
+```scss
+p {
+  color: #010203 + #040506;
+}
+```
+
+计算 `01 + 04 = 05 02 + 05 = 07 03 + 06 = 09`，然后编译为
+
+```css
+p {
+  color: #050709; }
+```
+<!-- TODO 定位到 function -->
+使用 `color functions` 比计算颜色值更方便一些。
+
+数字与颜色值之间也可以进行算数运算，同样也是分段计算的，比如
+
+```scss
+p {
+  color: #010203 * 2;
+}
+```
+
+计算 `01 * 2 = 02 02 * 2 = 04 03 * 2 = 06`，然后编译为
+
+```css
+p {
+  color: #020406; }
+```
+
+需要注意的是，如果颜色值包含 alpha channel（rgba 或 hsla 两种颜色值），必须拥有相等的 alpha 值才能进行运算，因为算术运算不会作用于 alpha 值。
+
+```scss
+p {
+  color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+}
+```
+
+编译为
+
+```css
+p {
+  color: rgba(255, 255, 0, 0.75); }
+```
+
+颜色值的 alpha channel 可以通过 opacify 或 transparentize 两个函数进行调整。
+
+```scss
+$translucent-red: rgba(255, 0, 0, 0.5);
+p {
+  color: opacify($translucent-red, 0.3);
+  background-color: transparentize($translucent-red, 0.25);
+}
+```
+
+编译为
+
+```css
+p {
+  color: rgba(255, 0, 0, 0.8);
+  background-color: rgba(255, 0, 0, 0.25); }
+```
+
+#### 字符串运算
+
+`+` 可用于连接字符串
+
+```scss
+p {
+  cursor: e + -resize;
+}
+```
+
+编译为
+
+```css
+p {
+  cursor: e-resize; }
+```
+
+注意，如果有引号字符串（位于 + 左侧）连接无引号字符串，运算结果是有引号的，相反，无引号字符串（位于 + 左侧）连接有引号字符串，运算结果则没有引号。
+
+```scss
+p:before {
+  content: "Foo " + Bar;
+  font-family: sans- + "serif";
+}
+```
+
+编译为
+
+```css
+p:before {
+  content: "Foo Bar";
+  font-family: sans-serif; }
+```
+
+运算表达式与其他值连用时，用空格做连接符：
+
+```scss
+p {
+  margin: 3px + 4px auto;
+}
+```
+
+编译为
+
+```css
+p {
+  margin: 7px auto; }
+```
+
+在有引号的文本字符串中使用 `#{}` 插值语句可以添加动态的值：
+
+```scss
+p:before {
+  content: "I ate #{5 + 10} pies!";
+}
+```
+
+编译为
+
+```css
+p:before {
+  content: "I ate 15 pies!"; }
+```
+
+#### 圆括号运算
+
+圆括号可以用来影响运算的顺序：
+
+```scss
+p {
+  width: 1em + (2em * 3);
+}
+```
+
+编译为
+
+```css
+p {
+  width: 7em; }
+```
+
+#### 函数运算
+
+SassScript 定义了多种函数，有些甚至可以通过普通的 CSS 语句调用
+<!-- 把下面的函数直接粘贴上来 -->
+
+### @Rules && 指令
+
+Sass 支持所有的 CSS3 @-Rules，以及 Sass 特有的 “指令”（directives）。这一节会详细解释，更多资料请查看 [控制指令](#controlDirectives) 与 [混合指令](mixinDirectives) 两个部分。
+
+#### @import
+
+Sass 拓展了 `@import` 的功能，允许其导入 SCSS 或 Sass 文件。被导入的文件将合并编译到同一个 CSS 文件中，另外，被导入的文件中所包含的变量或者混合指令 (mixin) 都可以在导入的文件中使用。
+
+Sass 在当前地址，或 Rack, Rails, Merb 的 Sass 文件地址寻找 Sass 文件，如果需要设定其他地址，可以用 `:load_paths` 选项，或者在命令行中输入 `--load-path` 命令。
+
+通常，`@import` 寻找 Sass 文件并将其导入，但在以下情况下，`@import` 仅作为普通的 CSS 语句，不会导入任何 Sass 文件:
+
+* 文件拓展名是 `.css`
+* 文件名以 `http://` 开头
+* 文件名是 `url()`
+* `@import` 包含 `media queries`
+
+如果不在上述情况内，文件的拓展名是 `.scss` 或 `.sass`，则导入成功。没有指定拓展名，Sass 将会试着寻找文件名相同，拓展名为 `.scss` 或 `.sass` 的文件并将其导入。
+
+```scss
+@import "foo.scss";
+```
+
+或
+
+```scss
+@import "foo";
+```
+
+都会导入文件 `foo.scss`，但是
+
+```scss
+@import "foo.css";
+@import "foo" screen;
+@import "http://foo.com/bar";
+@import url(foo);
+```
+
+编译为
+
+```css
+@import "foo.css";
+@import "foo" screen;
+@import "http://foo.com/bar";
+@import url(foo);
+```
+
+Sass 允许同时导入多个文件，例如同时导入 `rounded-corners` 与 `text-shadow` 两个文件：
+
+```scss
+@import "rounded-corners", "text-shadow";
+```
+
+导入文件也可以使用 `#{ }` 插值语句，但不是通过变量动态导入 Sass 文件，只能作用于 CSS 的 `url()` 导入方式：
+
+```scss
+$family: unquote("Droid+Sans");
+@import url("http://fonts.googleapis.com/css?family=\#{$family}");
+```
+
+编译为
+
+```css
+@import url("http://fonts.googleapis.com/css?family=Droid+Sans");
+```
+
+##### 分音
+
+如果需要导入 SCSS 或者 Sass 文件，但又不希望将其编译为 CSS，只需要在文件名前添加下划线，这样会告诉 Sass 不要编译这些文件，但导入语句中却不需要添加下划线。
+
+例如，将文件命名为 `_colors.scss`，便不会编译 `_colours.css` 文件。
+
+```scss
+@import "colors";
+```
+
+上面的例子，导入的其实是 `_colors.scss` 文件
+
+注意，不可以同时存在添加下划线与未添加下划线的同名文件，添加下划线的文件将会被忽略。
+
+##### 嵌套 @import
+
+大多数情况下，一般在文件的最外层（不在嵌套规则内）使用 `@import`，其实，也可以将 `@import` 嵌套进 CSS 样式或者 `@media` 中，与平时的用法效果相同，只是这样导入的样式只能出现在嵌套的层中。
+
+假设 `example.scss` 文件包含以下样式：
+
+```scss
+.example {
+  color: red;
+}
+```
+
+然后导入到 `#main` 样式内
+
+```scss
+#main {
+  @import "example";
+}
+```
+
+将会被编译为
+
+```scss
+#main .example {
+  color: red;
+}
+```
+
+不可以在混合指令 (mixin) 或控制指令 (control directives) 中嵌套 @import。
+
+#### @media
+
+Sass 中 `@media` 指令与 CSS 中用法一样，只是增加了一点额外的功能：允许其在 CSS 规则中嵌套。如果 `@media` 嵌套在 CSS 规则内，编译时，`@media` 将被编译到文件的最外层，包含嵌套的父选择器。这个功能让 `@media` 用起来更方便，不需要重复使用选择器，也不会打乱 CSS 的书写流程。
+
+```scss
+.sidebar {
+  width: 300px;
+  @media screen and (orientation: landscape) {
+    width: 500px;
+  }
+}
+```
+
+编译为
+
+```css
+.sidebar {
+  width: 300px; }
+  @media screen and (orientation: landscape) {
+    .sidebar {
+      width: 500px; } }
+```
+
+`@media` 的 queries 允许互相嵌套使用，编译时，Sass 自动添加 `and`
+
+```scss
+@media screen {
+  .sidebar {
+    @media (orientation: landscape) {
+      width: 500px;
     }
   }
 }
+```
 
-.box {
-  border: {
-   top: 1px solid red;
-   bottom: 1px solid green;
+编译为
+
+```css
+@media screen and (orientation: landscape) {
+  .sidebar {
+    width: 500px; } }
+```
+
+`@media` 甚至可以使用 SassScript（比如变量，函数，以及运算符）代替条件的名称或者值：
+
+```scss
+$media: screen;
+$feature: -webkit-min-device-pixel-ratio;
+$value: 1.5;
+
+@media #{$media} and ($feature: $value) {
+  .sidebar {
+    width: 500px;
   }
 }
+```
 
-.clearfix{
-  &:before,
-  &:after {
-    content:"";
-    display: table;
-  }
-  &:after {
-    clear:both;
-    overflow: hidden;
-  }
+编译为
+
+```css
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  .sidebar {
+    width: 500px; } }
+```
+
+#### @extend
+
+在设计网页的时候常常遇到这种情况：一个元素使用的样式与另一个元素完全相同，但又添加了额外的样式。通常会在 HTML 中给元素定义两个 class，一个通用样式，一个特殊样式。假设现在要设计一个普通错误样式与一个严重错误样式，一般会这样写：
+
+```html
+<div class="error seriousError">
+  Oh no! You've been hacked!
+</div>
+```
+
+样式如下
+
+```css
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  border-width: 3px;
+}
+```
+
+麻烦的是，这样做必须时刻记住使用 `.seriousError` 时需要参考 `.error` 的样式，带来了很多不便：比如加重维护负担，导致 bug，或者给 HTML 添加无语意的样式。使用 @extend 可以避免上述情况，告诉 Sass 将一个选择器下的所有样式继承给另一个选择器。
+
+```scss
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+```
+
+上面代码的意思是将 `.error` 下的所有样式继承给 `.seriousError，border-width: 3px;` 是单独给 `.seriousError` 设定特殊样式，这样，使用 `.seriousError` 的地方可以不再使用 `.error`。
+
+其他使用到 `.error` 的样式也会同样继承给 `.seriousError`，例如，另一个样式 `.error.intrusion` 使用了 `hacked.png` 做背景，`<div class="seriousError intrusion">` 也同样会使用 hacked.png 背景。
+
+```css
+.error.intrusion {
+  background-image: url("/image/hacked.png");
+}
+```
+
+##### How it works
+
+`@extend` 的作用是将重复使用的样式 `(.error)` 延伸 `(extend)` 给需要包含这个样式的特殊样式`（.seriousError）`，刚刚的例子：
+
+```scss
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.error.intrusion {
+  background-image: url("/image/hacked.png");
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+```
+
+编译为
+
+```css
+.error, .seriousError {
+  border: 1px #f00;
+  background-color: #fdd; }
+
+.error.intrusion, .seriousError.intrusion {
+  background-image: url("/image/hacked.png"); }
+
+.seriousError {
+  border-width: 3px; }
+```
+
+当合并选择器时，`@extend` 会很聪明地避免无谓的重复，`.seriousError.seriousError` 将编译为 `.seriousError`，不能匹配任何元素的选择器（比如 `#main#footer` ）也会删除。
+
+##### 延伸复杂的选择器
+
+Class 选择器并不是唯一可以被延伸 (extend) 的，Sass 允许延伸任何定义给单个元素的选择器，比如 `.special.cool`，`a:hover` 或者 `a.user[href^="http://"]` 等，例如：
+
+```scss
+.hoverlink {
+  @extend a:hover;
+}
+```
+
+同 class 元素一样，`a:hover` 的样式将继承给 `.hoverlink`。
+
+```scss
+.hoverlink {
+  @extend a:hover;
+}
+a:hover {
+  text-decoration: underline;
+}
+```
+
+编译为
+
+```css
+a:hover, .hoverlink {
+  text-decoration: underline; }
+```
+
+与上面 `.error.intrusion` 的例子一样，所有 `a:hover` 的样式将继承给 `.hoverlink`，包括其他使用到 `a:hover` 的样式，例如：
+
+```scss
+.hoverlink {
+  @extend a:hover;
+}
+.comment a.user:hover {
+  font-weight: bold;
+}
+```
+
+编译为
+
+```css
+.comment a.user:hover, .comment .user.hoverlink {
+  font-weight: bold; }
+```
+
+##### 多重延伸
+
+同一个选择器可以延伸给多个选择器，它所包含的属性将继承给所有被延伸的选择器：
+
+```scss
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.attention {
+  font-size: 3em;
+  background-color: #ff0;
+}
+.seriousError {
+  @extend .error;
+  @extend .attention;
+  border-width: 3px;
+}
+```
+
+编译为
+
+```css
+.error, .seriousError {
+  border: 1px #f00;
+  background-color: #fdd; }
+
+.attention, .seriousError {
+  font-size: 3em;
+  background-color: #ff0; }
+
+.seriousError {
+  border-width: 3px; }
+```
+
+每个 `.seriousError` 将包含 `.error` 与 `.attention` 下的所有样式，这时，后定义的样式享有优先权：`.seriousError` 的背景颜色是 `#ff0` 而不是 `#fdd`，因为 `.attention` 在 `.error` 之后定义。
+
+多重延伸可以使用逗号分隔选择器名，比如 `@extend .error, .attention;` 与 `@extend .error; @extend.attention` 有相同的效果。
+
+##### 继续延伸
+
+当一个选择器延伸给第二个后，可以继续将第二个选择器延伸给第三个，例如：
+
+```scss
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+.criticalError {
+  @extend .seriousError;
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+}
+```
+
+现在，每个 `.seriousError` 选择器将包含 `.error` 的样式，而 `.criticalError` 不仅包含 `.seriousError` 的样式也会同时包含 `.error` 的所有样式，上面的代码编译为：
+
+```css
+.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd; }
+
+.seriousError, .criticalError {
+  border-width: 3px; }
+
+.criticalError {
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%; }
+```
+
+##### 选择器列
+
+不可以将选择器列（比如 `.foo .bar` 或 `.foo + .bar`）延伸给其他元素，但是，却可以将其他元素延伸给选择器列：
+
+```scss
+#fake-links .link {
+  @extend a;
 }
 
-/* 但是也注意不可以无节制地嵌套，会加大浏览器的负担 */
+a {
+  color: blue;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+```
+
+编译为
+
+```css
+a, #fake-links .link {
+  color: blue; }
+  a:hover, #fake-links .link:hover {
+    text-decoration: underline; }
+```
+
+###### 合并选择器列
+
+有时会遇到复杂的情况，比如选择器列中的某个元素需要延伸给另一个选择器列，这种情况下，两个选择器列需要合并，比如：
+
+```scss
+#admin .tabbar a {
+  font-weight: bold;
+}
+#demo .overview .fakelink {
+  @extend a;
+}
+```
+
+技术上讲能够生成所有匹配条件的结果，但是这样生成的样式表太复杂了，上面这个简单的例子就可能有 10 种结果。所以，Sass 只会编译输出有用的选择器。
+
+当两个列 (sequence) 合并时，如果没有包含相同的选择器，将生成两个新选择器：第一列出现在第二列之前，或者第二列出现在第一列之前：
+
+```scss
+#admin .tabbar a {
+  font-weight: bold;
+}
+#demo .overview .fakelink {
+  @extend a;
+}
+```
+
+编译为
+
+```css
+#admin .tabbar a,
+#admin .tabbar #demo .overview .fakelink,
+#demo .overview #admin .tabbar .fakelink {
+  font-weight: bold; }
+```
+
+如果两个列 (sequence) 包含了相同的选择器，相同部分将会合并在一起，其他部分交替输出。在下面的例子里，两个列都包含 `#admin`，输出结果中它们合并在了一起：
+
+```scss
+#admin .tabbar a {
+  font-weight: bold;
+}
+#admin .overview .fakelink {
+  @extend a;
+}
+```
+
+编译为
+
+```css
+#admin .tabbar a,
+#admin .tabbar .overview .fakelink,
+#admin .overview .tabbar .fakelink {
+  font-weight: bold; }
+```
+
+##### @extend-Only 选择器
+
+有时，需要定义一套样式并不是给某个元素用，而是只通过 `@extend` 指令使用，尤其是在制作 `Sass` 样式库的时候，希望 `Sass` 能够忽略用不到的样式。
+
+如果使用普通的 CSS 规则，最后会编译出很多用不到的样式，也容易与其他样式名冲突，所以，Sass 引入了“占位符选择器” (placeholder selectors)，看起来很像普通的 `id` 或 `class` 选择器，只是 `#` 或 `.` 被替换成了 `%`。可以像 `class` 或者 `id` 选择器那样使用，当它们单独使用时，不会被编译到 CSS 文件中。
+
+```scss
+// This ruleset won't be rendered on its own.
+#context a%extreme {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+```
+
+占位符选择器需要通过延伸指令使用，用法与 `class` 或者 `id` 选择器一样，被延伸后，占位符选择器本身不会被编译。
+
+```scss
+.notice {
+  @extend %extreme;
+}
+```
+
+编译为
+
+```css
+#context a.notice {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em; }
+```
+
+##### 在指令之延伸
+
+在指令中使用 `@extend` 时（比如在 @media 中）有一些限制：Sass 不可以将 `@media` 层外的 CSS 规则延伸给指令层内的 CSS，这样会生成大量的无用代码。也就是说，如果在 `@media` （或者其他 CSS 指令）中使用 `@extend`，必须延伸给相同指令层中的选择器。
+
+下面的例子是可行的：
+
+```scss
+@media print {
+  .error {
+    border: 1px #f00;
+    background-color: #fdd;
+  }
+  .seriousError {
+    @extend .error;
+    border-width: 3px;
+  }
+}
+```
+
+但不可以这样：
+
+```scss
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+
+@media print {
+  .seriousError {
+    // INVALID EXTEND: .error is used outside of the "@media print" directive
+    @extend .error;
+    border-width: 3px;
+  }
+}
+```
+
+希望有一天，浏览器可以原生支持 `@extend` 指令，这样就可以在任何指令中使用延伸功能，不再受限制了。
+
+### 控制指令
+
+SassScript 提供了一些基础的控制指令，比如在满足一定条件时引用样式，或者设定范围重复输出格式。控制指令是一种高级功能，日常编写过程中并不常用到，主要与混合指令 (mixin) 配合使用。
+
+#### @if
+
+当 @if 的表达式返回值不是 `false` 或者 `null` 时，条件成立，输出 `{}` 内的代码：
+
+```scss
+p {
+  @if 1 + 1 == 2 { border: 1px solid; }
+  @if 5 < 3 { border: 2px dotted; }
+  @if null  { border: 3px double; }
+}
+```
+
+编译为
+
+```css
+p {
+  border: 1px solid; }
+```
+
+`@if` 声明后面可以跟多个 `@else if` 声明，或者一个 `@else` 声明。如果 `@if` 声明失败，Sass 将逐条执行 `@else if` 声明，如果全部失败，最后执行 `@else` 声明，例如：
+
+```scss
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+```
+
+编译为
+
+```css
+p {
+  color: green; }
+```
+
+#### @for
+
+`@for` 指令可以在限制的范围内重复输出格式，每次按要求（变量的值）对输出结果做出变动。这个指令包含两种格式：`@for $var from <start> through <end>`，或者 `@for $var from <start> to <end>`，区别在于 `through` 与 `to` 的含义：当使用 `through` 时，条件范围包含 `<start>` 与 `<end>` 的值，而使用 `to` 时条件范围只包含 `<start>` 的值不包含 `<end>` 的值。另外，`$var` 可以是任何变量，比如 `$i`；`<start>` 和 `<end>` 必须是整数值。
+
+```scss
+@for $i from 1 through 3 {
+  .item-#{$i} { width: 2em * $i; }
+}
+```
+
+编译为
+
+```css
+.item-1 {
+  width: 2em; }
+.item-2 {
+  width: 4em; }
+.item-3 {
+  width: 6em; }
+```
+
+#### @each
+
+`@each` 指令的格式是 `$var in <list>`, `$var` 可以是任何变量名，比如 `$length` 或者 `$name`，而 `<list>` 是一连串的值，也就是值列表。
+
+`@each` 将变量 `$var` 作用于值列表中的每一个项目，然后输出结果，例如：
+
+```scss
+@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+  }
+}
+```
+
+编译为
+
+```css
+.puma-icon {
+  background-image: url('/images/puma.png'); }
+.sea-slug-icon {
+  background-image: url('/images/sea-slug.png'); }
+.egret-icon {
+  background-image: url('/images/egret.png'); }
+.salamander-icon {
+  background-image: url('/images/salamander.png'); }
+```
+
+#### @while
+
+`@while` 指令重复输出格式直到表达式返回结果为 `false`。这样可以实现比 `@for` 更复杂的循环，只是很少会用到。例如：
+
+```scss
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} { width: 2em * $i; }
+  $i: $i - 2;
+}
+```
+
+编译为
+
+```css
+.item-6 {
+  width: 12em; }
+
+.item-4 {
+  width: 8em; }
+
+.item-2 {
+  width: 4em; }
 ```
 
 ### 混合宏
@@ -242,30 +1265,6 @@ button{
 }
 ```
 
-### 扩展/继承
-
-扩展/继承的作用类似于混合宏，优势是不会产生亢余代码，缺点是可以使用的情况不如混合宏常见，使用起来也不如混合宏灵活。
-
-```css
-.btn {
-  border: 1px solid #ccc;
-  padding: 6px 10px;
-  font-size: 14px;
-}
-
-.btn-primary {
-  background-color: #f36;
-  color: #fff;
-  @extend .btn;
-}
-
-.btn-second {
-  background-color: orange;
-  color: #fff;
-  @extend .btn;
-}
-```
-
 ### 占位符
 
 ```scss
@@ -281,126 +1280,7 @@ button{
 }
 ```
 
-### 插值
 
-Sass允许在#{}内部解析变量
-
-```scss
-$properties: (margin, padding);
-@mixin set-value($side, $value) {
-  @each $prop in $properties {
-    #{$prop}-#{$side}: $value;
-  }
-}
-.login-box {
-  @include set-value(top, 14px);
-}
-```
-
-### 运算
-
-```scss
-.box {
-  width: 20px + 8in;
-}
-$full-width: 960px;
-$sidebar-width: 200px;
-.content {
-  width: $full-width -  $sidebar-width;
-}
-.box {
-  width: 10px * 2;
-}
-.box {
-  width: (100px / 2);
-}
-p {
-  font: 10px/8px;             // 纯 CSS，不是除法运算
-  $width: 1000px;
-  width: $width/2;            // 使用了变量，是除法运算
-  width: round(1.5)/2;        // 使用了函数，是除法运算
-  height: (500px/2);          // 使用了圆括号，是除法运算
-  margin-left: 5px + 8px/2px; // 使用了加（+）号，是除法运算
-}
-.box {
-  width: ((220px + 720px) - 11 * 20 ) / 12 ;
-}
-p {
-  color: #010203 + #040506;
-  background-color: #010203 * 2;
-}
-
-$content: "Hello" + "" + "Sass!";
-.box:before {
-  content: " #{$content} ";
-}
-```
-
-## Sass高级特性
-
-### @if
-
-```scss
-@mixin blockOrHidden($boolean:true) {
-  @if $boolean {
-    display: block;
-  }
-  @else {
-    display: none;
-  }
-}
-.block {
-  @include blockOrHidden;
-}
-.hidden{
-  @include blockOrHidden(false);
-}
-```
-
-### @for
-
-```scss
-@for $i from <start> through <end>
-@for $i from <start> to <end>
-@for $i from 1 through 3 {
-  .item-#{$i} { width: 2em * $i; }
-}
-@for $i from 1 to 3 {
-  .item-#{$i} { width: 2em * $i; }
-}
-
-$grid-prefix: span !default;
-$grid-width: 60px !default;
-$grid-gutter: 20px !default;
-
-%grid {
-  float: left;
-  margin-left: $grid-gutter / 2;
-  margin-right: $grid-gutter / 2;
-}
-@for $i from 1 through 12 {
-  .#{$grid-prefix}#{$i}{
-    width: $grid-width * $i + $grid-gutter * ($i - 1);
-    @extend %grid;
-  }
-}
-```
-
-### @each
-
-```scss
-$list: adam john wynn mason kuroir; //$list 就是一个列表
-@mixin author-images {
-    @each $author in $list {
-        .photo-#{$author} {
-            background: url("/images/avatars/#{$author}.png") no-repeat;
-        }
-    }
-}
-.author-bio {
-    @include author-images;
-}
-```
 
 ## Sass中的函数
 
