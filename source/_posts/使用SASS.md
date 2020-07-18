@@ -72,6 +72,21 @@ sass --watch app/sass:public/stylesheets
 
 更多命令通过`sass --help`查看帮助
 
+## 输出格式
+
+Sass 默认的 CSS 输出格式很美观也能清晰反映文档结构，为满足其他需求 Sass 也提供了多种输出格式。
+
+Sass 提供了四种输出格式，可以通过 `:style option` 选项设定，或者在命令行中使用 `--style` 选项。
+
+```shell
+node-sass -w input.scss output.css --style expanded
+```
+
+* nested -- Nested （嵌套）样式是 Sass 默认的输出格式，能够清晰反映 CSS 与 HTML 的结构关系。选择器与属性等单独占用一行，缩进量与 Sass 文件中一致，每行的缩进量反映了其在嵌套规则内的层数。当阅读大型 CSS 文件时，这种样式可以很容易地分析文件的主要结构。
+* expanded -- Expanded 输出更像是手写的样式，选择器、属性等各占用一行，属性根据选择器缩进，而选择器不做任何缩进。
+* compact -- Compact 输出方式比起上面两种占用的空间更少，每条 CSS 规则只占一行，包含其下的所有属性。嵌套过的选择器在输出时没有空行，不嵌套的选择器会输出空白行作为分隔符。
+* compressed -- Compressed 输出方式删除所有无意义的空格、空白行、以及注释，力求将文件体积压缩到最小，同时也会做出其他调整，比如会自动替换占用空间最小的颜色表达方式。
+
 ## 注释
 
 Sass 支持标准的 CSS 多行注释 `/* */`，以及单行注释 `//`，前者会 被完整输出到编译后的 CSS 文件中，而后者则不会。
@@ -560,11 +575,11 @@ p {
 SassScript 定义了多种函数，有些甚至可以通过普通的 CSS 语句调用
 <!-- 把下面的函数直接粘贴上来 -->
 
-### @Rules && 指令
+## @Rules && 指令
 
 Sass 支持所有的 CSS3 @-Rules，以及 Sass 特有的 “指令”（directives）。这一节会详细解释，更多资料请查看 [控制指令](#controlDirectives) 与 [混合指令](mixinDirectives) 两个部分。
 
-#### @import
+### @import
 
 Sass 拓展了 `@import` 的功能，允许其导入 SCSS 或 Sass 文件。被导入的文件将合并编译到同一个 CSS 文件中，另外，被导入的文件中所包含的变量或者混合指令 (mixin) 都可以在导入的文件中使用。
 
@@ -626,7 +641,7 @@ $family: unquote("Droid+Sans");
 @import url("http://fonts.googleapis.com/css?family=Droid+Sans");
 ```
 
-##### 分音
+#### 分音
 
 如果需要导入 SCSS 或者 Sass 文件，但又不希望将其编译为 CSS，只需要在文件名前添加下划线，这样会告诉 Sass 不要编译这些文件，但导入语句中却不需要添加下划线。
 
@@ -640,7 +655,7 @@ $family: unquote("Droid+Sans");
 
 注意，不可以同时存在添加下划线与未添加下划线的同名文件，添加下划线的文件将会被忽略。
 
-##### 嵌套 @import
+#### 嵌套 @import
 
 大多数情况下，一般在文件的最外层（不在嵌套规则内）使用 `@import`，其实，也可以将 `@import` 嵌套进 CSS 样式或者 `@media` 中，与平时的用法效果相同，只是这样导入的样式只能出现在嵌套的层中。
 
@@ -670,7 +685,7 @@ $family: unquote("Droid+Sans");
 
 不可以在混合指令 (mixin) 或控制指令 (control directives) 中嵌套 @import。
 
-#### @media
+### @media
 
 Sass 中 `@media` 指令与 CSS 中用法一样，只是增加了一点额外的功能：允许其在 CSS 规则中嵌套。如果 `@media` 嵌套在 CSS 规则内，编译时，`@media` 将被编译到文件的最外层，包含嵌套的父选择器。这个功能让 `@media` 用起来更方便，不需要重复使用选择器，也不会打乱 CSS 的书写流程。
 
@@ -735,7 +750,7 @@ $value: 1.5;
     width: 500px; } }
 ```
 
-#### @extend
+### @extend
 
 在设计网页的时候常常遇到这种情况：一个元素使用的样式与另一个元素完全相同，但又添加了额外的样式。通常会在 HTML 中给元素定义两个 class，一个通用样式，一个特殊样式。假设现在要设计一个普通错误样式与一个严重错误样式，一般会这样写：
 
@@ -780,7 +795,7 @@ $value: 1.5;
 }
 ```
 
-##### How it works
+#### How it works
 
 `@extend` 的作用是将重复使用的样式 `(.error)` 延伸 `(extend)` 给需要包含这个样式的特殊样式`（.seriousError）`，刚刚的例子：
 
@@ -814,7 +829,7 @@ $value: 1.5;
 
 当合并选择器时，`@extend` 会很聪明地避免无谓的重复，`.seriousError.seriousError` 将编译为 `.seriousError`，不能匹配任何元素的选择器（比如 `#main#footer` ）也会删除。
 
-##### 延伸复杂的选择器
+#### 延伸复杂的选择器
 
 Class 选择器并不是唯一可以被延伸 (extend) 的，Sass 允许延伸任何定义给单个元素的选择器，比如 `.special.cool`，`a:hover` 或者 `a.user[href^="http://"]` 等，例如：
 
@@ -860,7 +875,7 @@ a:hover, .hoverlink {
   font-weight: bold; }
 ```
 
-##### 多重延伸
+#### 多重延伸
 
 同一个选择器可以延伸给多个选择器，它所包含的属性将继承给所有被延伸的选择器：
 
@@ -899,7 +914,7 @@ a:hover, .hoverlink {
 
 多重延伸可以使用逗号分隔选择器名，比如 `@extend .error, .attention;` 与 `@extend .error; @extend.attention` 有相同的效果。
 
-##### 继续延伸
+#### 继续延伸
 
 当一个选择器延伸给第二个后，可以继续将第二个选择器延伸给第三个，例如：
 
@@ -940,7 +955,7 @@ a:hover, .hoverlink {
   right: 10%; }
 ```
 
-##### 选择器列
+#### 选择器列
 
 不可以将选择器列（比如 `.foo .bar` 或 `.foo + .bar`）延伸给其他元素，但是，却可以将其他元素延伸给选择器列：
 
@@ -966,7 +981,7 @@ a, #fake-links .link {
     text-decoration: underline; }
 ```
 
-###### 合并选择器列
+##### 合并选择器列
 
 有时会遇到复杂的情况，比如选择器列中的某个元素需要延伸给另一个选择器列，这种情况下，两个选择器列需要合并，比如：
 
@@ -1021,7 +1036,7 @@ a, #fake-links .link {
   font-weight: bold; }
 ```
 
-##### @extend-Only 选择器
+#### @extend-Only 选择器
 
 有时，需要定义一套样式并不是给某个元素用，而是只通过 `@extend` 指令使用，尤其是在制作 `Sass` 样式库的时候，希望 `Sass` 能够忽略用不到的样式。
 
@@ -1053,7 +1068,7 @@ a, #fake-links .link {
   font-size: 2em; }
 ```
 
-##### 在指令之延伸
+#### 在指令之延伸
 
 在指令中使用 `@extend` 时（比如在 @media 中）有一些限制：Sass 不可以将 `@media` 层外的 CSS 规则延伸给指令层内的 CSS，这样会生成大量的无用代码。也就是说，如果在 `@media` （或者其他 CSS 指令）中使用 `@extend`，必须延伸给相同指令层中的选择器。
 
@@ -1091,11 +1106,11 @@ a, #fake-links .link {
 
 希望有一天，浏览器可以原生支持 `@extend` 指令，这样就可以在任何指令中使用延伸功能，不再受限制了。
 
-### 控制指令
+## 控制指令
 
 SassScript 提供了一些基础的控制指令，比如在满足一定条件时引用样式，或者设定范围重复输出格式。控制指令是一种高级功能，日常编写过程中并不常用到，主要与混合指令 (mixin) 配合使用。
 
-#### @if
+### @if
 
 当 @if 的表达式返回值不是 `false` 或者 `null` 时，条件成立，输出 `{}` 内的代码：
 
@@ -1138,7 +1153,7 @@ p {
   color: green; }
 ```
 
-#### @for
+### @for
 
 `@for` 指令可以在限制的范围内重复输出格式，每次按要求（变量的值）对输出结果做出变动。这个指令包含两种格式：`@for $var from <start> through <end>`，或者 `@for $var from <start> to <end>`，区别在于 `through` 与 `to` 的含义：当使用 `through` 时，条件范围包含 `<start>` 与 `<end>` 的值，而使用 `to` 时条件范围只包含 `<start>` 的值不包含 `<end>` 的值。另外，`$var` 可以是任何变量，比如 `$i`；`<start>` 和 `<end>` 必须是整数值。
 
@@ -1159,7 +1174,7 @@ p {
   width: 6em; }
 ```
 
-#### @each
+### @each
 
 `@each` 指令的格式是 `$var in <list>`, `$var` 可以是任何变量名，比如 `$length` 或者 `$name`，而 `<list>` 是一连串的值，也就是值列表。
 
@@ -1186,7 +1201,7 @@ p {
   background-image: url('/images/salamander.png'); }
 ```
 
-#### @while
+### @while
 
 `@while` 指令重复输出格式直到表达式返回结果为 `false`。这样可以实现比 `@for` 更复杂的循环，只是很少会用到。例如：
 
@@ -1211,126 +1226,320 @@ $i: 6;
   width: 4em; }
 ```
 
-### 混合宏
+## 混合指令
 
-混合宏类似于 js中的函数，用来实现某个特定的功能。一次定义之后可以方便的调用。通过@mixin定义混合宏，通过@include调用混合宏。**混合宏会产生亢余代码**。
+混合指令（Mixin）用于定义可重复使用的样式，避免了使用无语意的 class，比如 `.float-left`。混合指令可以包含所有的 CSS 规则，绝大部分 Sass 规则，甚至通过参数功能引入变量，输出多样化的样式。
+
+### 定义混合指令 `@mixin`
+
+混合指令的用法是在 `@mixin` 后添加名称与样式，比如名为 `large-text` 的混合通过下面的代码定义
 
 ```scss
-/* 没有参数的混合宏可以省略() */
-@mixin border-radius{
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-button{
-  @include border-radius;
-}
-/* 混合宏中传递参数 */
-@mixin center($width,$height){
-  width: $width;
-  height: $height;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -($height) / 2;
-  margin-left: -($width) / 2;
-}
-.box-center {
-  @include center(500px,300px);
-}
-/* 混合宏中定义默认值 */
-@mixin border-radius($radius:5px){
-  -webkit-border-radius: $radius;
-  border-radius: $radius;
-}
-.nav{
-  @include border-radius;
-}
-.box{
-  @include border-radius(3px);
-}
-
-/* 混合宏一些更高级的使用 */
-@mixin box-shadow($shadows...){
-  @if length($shadows) >= 1 {
-    -webkit-box-shadow: $shadows;
-    box-shadow: $shadows;
-  } @else {
-    $shadows: 0 0 2px rgba(#000,.25);
-    -webkit-box-shadow: $shadow;
-    box-shadow: $shadow;
+@mixin large-text {
+  font: {
+    family: Arial;
+    size: 20px;
+    weight: bold;
   }
 }
-.box {
-  @include box-shadow(0 0 1px rgba(#000,.5),0 0 2px rgba(#000,.2));
+```
+
+混合指令也可以包含选择器和属性，甚至可以用 `&` 引用父选择器
+
+```scss
+@mixin clearfix {
+  display: inline-block;
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  * html & { height: 1px }
 }
 ```
 
-### 占位符
+### 引用混合指令 `@include`
+
+使用 `@include` 指令引用混合样式
 
 ```scss
-%mt5 {
-  margin-top: 5px;
-}
-%pt5{
-  padding-top: 5px;
-}
-.btn {
-  @extend %mt5;
-  @extend %pt5;
+.page-title {
+  @include large-text;
+  padding: 4px;
+  margin-top: 10px;
 }
 ```
 
-
-
-## Sass中的函数
+编译为
 
 ```scss
-//自定义函数
-@function double($n) {
-  @return $n * 2;
+.page-title {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 4px;
+  margin-top: 10px; }
+```
+
+> 混合指令类似于 javascript 函数,除非引用，否则不会出现在结果中**
+
+也可以不使用父选择器在最外层直接引用混合样式
+```scss
+@mixin silly-links {
+  a {
+    color: blue;
+    background-color: red;
+  }
 }
+@include silly-links;
+```
+
+编译为
+
+```css
+a {
+  color: blue;
+  background-color: red; }
+```
+
+混合样式中也可以包含其他混合样式，比如
+
+```scss
+@mixin compound {
+  @include highlighted-background;
+  @include header-text;
+}
+@mixin highlighted-background { background-color: #fc0; }
+@mixin header-text { font-size: 20px; }
+```
+
+混合样式中应该只定义后代选择器，这样可以安全的导入到文件的任何位置。
+
+### 参数
+
+参数用于给混合指令中的样式设定变量，并且赋值使用。在定义混合指令的时候，按照变量的格式，通过逗号分隔，将参数写进圆括号里。引用指令时，按照参数的顺序，再将所赋的值对应写进括号
+
+```scss
+@mixin sexy-border($color, $width) {
+  border: {
+    color: $color;
+    width: $width;
+    style: dashed;
+  }
+}
+p { @include sexy-border(blue, 1in); }
+```
+
+编译为
+
+```css
+p {
+  border-color: blue;
+  border-width: 1in;
+  border-style: dashed; }
+```
+
+混合指令也可以使用给变量赋值的方法给参数设定默认值，然后，当这个指令被引用的时候，如果没有给参数赋值，则自动使用默认值：
+
+```scss
+@mixin sexy-border($color, $width: 1in) {
+  border: {
+    color: $color;
+    width: $width;
+    style: dashed;
+  }
+}
+p { @include sexy-border(blue); }
+h1 { @include sexy-border(blue, 2in); }
+```
+
+编译为
+
+```css
+p {
+  border-color: blue;
+  border-width: 1in;
+  border-style: dashed; }
+
+h1 {
+  border-color: blue;
+  border-width: 2in;
+  border-style: dashed; }
+```
+
+### 关键词参数
+
+混合指令也可以使用关键词参数，上面的例子也可以写成：
+
+```scss
+p { @include sexy-border($color: blue); }
+h1 { @include sexy-border($color: blue, $width: 2in); }
+```
+
+虽然不够简明，但是阅读起来会更方便。关键词参数给函数提供了更灵活的接口，以及容易调用的参数。关键词参数可以打乱顺序使用，如果使用默认值也可以省缺，另外，参数名被视为变量名，下划线、短横线可以互换使用。
+
+### 可变参数
+
+有时，不能确定混合指令需要使用多少个参数，比如一个关于 `box-shadow` 的混合指令不能确定有多少个 'shadow' 会被用到。这时，可以使用参数变量 `…` 声明（写在参数的最后方）告诉 Sass 将这些参数视为值列表处理
+
+```scss
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+}
+.shadows {
+  @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999);
+}
+```
+
+编译为
+
+```css
+.shadows {
+  box-shadow: 0px 4px 5px #666, 2px 6px 10px #999;
+}
+```
+
+有时，我们可以确定混合指令中的部分参数，其余的参数数不确定的
+
+```scss
+@mixin test($color, $shadows...) {
+  a {
+    color: $color;
+    box-shadow: $shadows;
+  }
+}
+$color: red;
+$shadows: 0px 4px 5px #666, 2px 6px 10px #999;
+@include test($color, $shadows)
+```
+
+编译为
+
+```css
+a {
+  color: red;
+  box-shadow: 0px 4px 5px #666, 2px 6px 10px #999; }
+```
+
+> **一定要注意，可变参数必须放在最后**
+
+### 向混合样式中导入内容
+
+在引用混合样式的时候，可以先将一段代码导入到混合指令中，然后再输出混合样式，额外导入的部分将出现在 `@content` 标志的地方：
+
+```scss
+@mixin apply-to-ie6-only {
+  * html {
+    @content;
+  }
+}
+@include apply-to-ie6-only {
+  #logo {
+    background-image: url('/logo.gif');
+  }
+}
+```
+
+编译为
+
+```css
+* html #logo {
+  background-image: url(/logo.gif);
+}
+```
+
+> 当 @content 在指令中出现过多次或者出现在循环中时，额外的代码将被导入到每一个地方。
+
+## 函数指令
+
+### 自定义函数
+
+Sass 支持自定义函数，并能在任何属性值或 SassScript 中使用：
+
+```scss
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }
+```
+
+编译为
+
+```css
 #sidebar {
-  width: double(5px);
-}
+  width: 240px; }
 ```
 
-Sass中的内置函数
+与 mixin 相同，也可以传递若干个全局变量给函数作为参数。一个函数可以含有多条语句，需要调用 `@return` 输出结果。
 
-+ 字符串函数
-  + unquote
-  + quote
-  + To-upper-case
-  + To-lower-case
-  + percentage
-  + round
-  + ceil
-  + floor
-  + abs
-  + min
-  + max
-  + random
+自定义的函数也可以使用关键词参数，上面的例子还可以这样写：
 
-+ 列表函数
-  + length  取列表数据的长度
-  + nth  (10px 20px 30px, 1)
-  + join  join(10px 20px, 30px 40px)
-  + append  append(10px 20px ,30px)
-  + zip  zip(1px 2px 3px,solid dashed dotted,green blue red)
-  + index  index(1px solid red, solid)
-  + type-of  type-of(100)
-  + unit  取单位
-  + unitless  判断一个值是否带有单位
-  + comparable  判断两个数是否可以进行加减合并
-  + if(true,1px,2px)
+```scss
+#sidebar { width: grid-width($n: 5); }
+```
 
-+ Maps函数
-  + map-get
-  + map-has-key
-  + map-keys
-  + map-values
-  + map-merge
-  + map-remove
-  + keywords
+建议在自定义函数前添加前缀避免命名冲突，其他人阅读代码时也会知道这不是 Sass 或者 CSS 的自带功能。
+
+### sass 中内置的函数
+
+* 字符串函数
+  * unquote
+  * quote
+  * To-upper-case
+  * To-lower-case
+  * percentage
+  * round
+  * ceil
+  * floor
+  * abs
+  * min
+  * max
+  * random
+* 列表函数
+  * length  列表数据的长度
+  * nth  (10px 20px 30px, 1)
+  * join  join(10px 20px, 30px 40px)
+  * append  append(10px 20px ,30px)
+  * zip  zip(1px 2px 3px,solid dashed dotted,green blue red)
+  * index  index(1px solid red, solid)
+  * type-of  type-of(100)
+  * unit  取单位
+  * unitless  判断一个值是否带有单位
+  * comparable  判断两个数是否可以进行加减合并
+  * if(true,1px,2px)
+* Maps函数
+  * map-get
+  * map-has-key
+  * map-keys
+  * map-values
+  * map-merge
+  * map-remove
+  * keywords
+* 颜色函数
+  * rgb
+  * rgba
+  * red
+  * green
+  * blue
+  * mix  混合两种颜色 第三个参数为第一种颜色的比例  mix(blue,red,20%)
+  * lighten  lighten(red, 20%)
+  * darken  darken(red,30%)
+  * saturate  改变颜色的饱和度 参数单位为百分比 saturate(blue,20%)
+  * desaturate
+  * adjust-hue  通过调整色相 adjust-hue(blue,30deg)
+  * grayscale  直接让饱和度为0  grayscale(blue)
+  * alpha  获取透明度
+  * opacity  获取透明度
+  * rgba
+  * fade-in  增加透明度
+  * transparentize  减少透明度
+  * fade-out  减少透明度
 
 ```scss
 $map: (
@@ -1424,26 +1633,6 @@ $newcolor = map-merge($color, $typo);
 /* 得到新值 */
 $map:map-remove($social-colors,dribble);
 ```
-
-+ 颜色函数
-  + rgb
-  + rgba
-  + red
-  + green
-  + blue
-  + mix  混合两种颜色 第三个参数为第一种颜色的比例  mix(blue,red,20%)
-  + lighten  lighten(red, 20%)
-  + darken  darken(red,30%)
-  + saturate  改变颜色的饱和度 参数单位为百分比 saturate(blue,20%)
-  + desaturate
-  + adjust-hue  通过调整色相 adjust-hue(blue,30deg)
-  + grayscale  直接让饱和度为0  grayscale(blue)
-  + alpha  获取透明度
-  + opacity  获取透明度
-  + rgba
-  + fade-in  增加透明度
-  + transparentize  减少透明度
-  + fade-out  减少透明度
 
 ```scss
 <ul class="swatches red">
@@ -1587,60 +1776,6 @@ ul.black {
   }
 }
 </style>
-```
-
-## Sass的@规则
-
-+ @import
-+ @media
-
-```scss
-.sidebar {
-  width: 300px;
-  @media screen and (orientation: landscape) {
-    width: 500px;
-  }
-}
-@media screen {
-  .sidebar {
-    @media (orientation: landscape) {
-      width: 500px;
-    }
-  }
-}
-
-$media: screen;
-$feature: -webkit-min-device-pixel-ratio;
-$value: 1.5;
-
-@media #{$media} and ($feature: $value) {
-  .sidebar {
-    width: 500px;
-  }
-}
-```
-
-+ @extend
-+ @at-root
-+ @debug
-+ @warn
-+ @error
-+ @content
-
-```scss
-$small : 750px;
-@mixin  onsmall {
-  @media  only screen and (max-width: $small){
-    @content;
-  }
-}
-
-.navbar-content{
-  max-width:980px;
-  @include onsmall {
-    min-width:320px;
-  }
-}
 ```
 
 ## 最后附上一个rem的例子
