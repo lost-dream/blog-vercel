@@ -63,7 +63,7 @@ yarn add -D typescript ts-loader sass sass-loader -W
 
 增加 ts-loader 和 sass-loader配置；修改入口文件为 ts 结尾；添加`resolve.extensions`，支持 ts 文件引用
 
-```diff build/webpack.config.base.js
+```diff
 // build/webpack.config.base.js
 'use strict'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
