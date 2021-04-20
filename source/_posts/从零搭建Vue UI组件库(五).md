@@ -625,5 +625,15 @@ export enum Language {
 ## 修改packages && 编写文档
 
 例子中，我定义了`button`组件，然后新建`markdown`文件夹，创建相应的语言文件夹，分别创建`button.md`，然后编写文档，就完成了。这里有几点要注意：
+
 + `:::demo demo-desc`是固定的语法，一定要这样写，下面的源码才会被编译成示例
 + 示例中的`dt-button`，对应的是 button 组件中，vue 的 name
+
+
+## 增加 build:docs命令
+
+```shell
+"script": {
++  "build:docs": "webpack --config build/webpack.config.dev.js"
+}
+```
