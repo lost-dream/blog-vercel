@@ -9,20 +9,32 @@ var attributes = [
 var attributesStr = attributes.join(" ");
 
 var figure_tag_reg = /<figure class="highlight ([a-zA-Z]+)">.*?<\/figure>/;
-var doc_path_reg = /<figcaption><span>.*?<\/span><\/figcaption>/;
+var figcaption_tag_reg = /<figcaption>.*?<\/figcaption>/;
 
 hexo.extend.filter.register("after_post_render", function (data) {
   while (figure_tag_reg.test(data.content)) {
     data.content = data.content.replace(figure_tag_reg, function () {
       var language = RegExp.$1 || "plain";
       var lastMatch = RegExp.lastMatch;
+      var codeblockStr = data.content.match(figcaption_tag_reg);
+      var docPath, linkPath, linkText;
 
-      var docPath;
-      var docPathMatch = data.content.match(doc_path_reg);
-      if (docPathMatch) {
-        docPath = docPathMatch[0]
-          .replace("<figcaption><span>", "")
-          .replace("</span></figcaption>", "");
+      if (codeblockStr) {
+        var docPathStr = codeblockStr[0].match(/<span>.*?<\/span>/);
+        if (docPathStr) {
+          docPath = docPathStr[0]
+            .replace("<figcaption><span>", "")
+            .replace("</span></figcaption>", "");
+        }
+
+        var linkPathStr = codeblockStr[0].match(/<a.*?<\/a>/);
+        if (linkPathStr) {
+          linkPath = linkPathStr[0].match(
+            /https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*/
+          )[0];
+
+          linkText = linkPathStr[0].replace(/<a.*?>/, "").replace("</a>", "");
+        }
       }
 
       lastMatch = lastMatch
@@ -41,9 +53,18 @@ hexo.extend.filter.register("after_post_render", function (data) {
       }
 
       if (language) {
-        html += '<span class="language">' + language.toUpperCase() + "</span>";
+        html += '<span class="mac-panel__language">' + language.toUpperCase() + "</span>";
       } else {
         html += '<span class="language"></span>';
+      }
+
+      if ((linkPath, linkText)) {
+        html +=
+          '<a class="mac-panel__link" href="' +
+          linkPath +
+          '" target="_blank">' +
+          linkText +
+          "</a>";
       }
 
       html += "</header>" + lastMatch + "</div>";
