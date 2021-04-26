@@ -1,5 +1,6 @@
 const { src, dest, series, task } = require('gulp')
 const miniCss = require('gulp-minify-css')
+const autoprefixer = require('gulp-autoprefixer')
 const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const htmlClean = require('gulp-htmlclean')
@@ -7,7 +8,7 @@ const babel = require('gulp-babel')
 const uglify = require('gulp-uglify')
 
 function minifyCss() {
-  return src('./public/**/*.css').pipe(miniCss()).pipe(dest('./public'))
+  return src('./public/**/*.css').pipe(autoprefixer({cascade: false})).pipe(miniCss()).pipe(dest('./public'))
 }
 
 function minifyJs() {

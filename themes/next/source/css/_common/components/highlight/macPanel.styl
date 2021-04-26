@@ -1,0 +1,44 @@
+/*mac Panel效果代码块相关*/
+.code-panel__wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
+  margin: 35px 0;
+  margin-top: 10px;
+  margin-bottom: 25px;
+
+  .mac-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 92px;
+    background: #e6eaed;
+    color: #555;
+    height: 38px;
+    align-items: center;
+
+    .doc-path {
+      flex: 1;
+      margin-right: 20px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #fc625d;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    left: 20px;
+    margin-top: 13px;
+    -webkit-box-shadow: 20px 0px #fdbc40, 40px 0px #35cd4b;
+    box-shadow: 20px 0px #fdbc40, 40px 0px #35cd4b;
+    z-index: 3;
+  }
+}

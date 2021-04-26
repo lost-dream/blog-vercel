@@ -1,7 +1,7 @@
 ---
 title: 从零搭建Vue UI组件库(一)
 date: 2021-04-15 09:55:41
-tags: [Vue adminUI]
+tags: [Vue, adminUI]
 categories: [adminUI]
 description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 ---
