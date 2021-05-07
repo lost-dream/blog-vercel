@@ -8,7 +8,10 @@ const babel = require('gulp-babel')
 const uglify = require('gulp-uglify')
 
 function minifyCss() {
-  return src('./public/**/*.css').pipe(autoprefixer({cascade: false})).pipe(miniCss()).pipe(dest('./public'))
+  return src('./public/**/*.css')
+    .pipe(autoprefixer({ cascade: false }))
+    .pipe(miniCss())
+    .pipe(dest('./public'))
 }
 
 function minifyJs() {
@@ -19,17 +22,19 @@ function minifyJs() {
 }
 
 function minifyHtml() {
-  return src('./public/**/*.html')
-    .pipe(htmlClean())
-    // .pipe(
-    //   htmlmin({
-    //     removeComments: true,
-    //     minifyCSS: true,
-    //     minifyJS: true,
-    //     minifyURLs: true,
-    //   })
-    // )
-    .pipe(dest('./public'))
+  return (
+    src('./public/**/*.html')
+      .pipe(htmlClean())
+      // .pipe(
+      //   htmlmin({
+      //     removeComments: true,
+      //     minifyCSS: true,
+      //     minifyJS: true,
+      //     minifyURLs: true,
+      //   })
+      // )
+      .pipe(dest('./public'))
+  )
 }
 
 function minifyImages() {
@@ -39,7 +44,7 @@ function minifyImages() {
         optimizationLevel: 5,
         progressive: true,
         interlaced: false,
-        multipass: false,
+        multipass: false
       })
     )
     .pipe(dest('./public/images'))
@@ -52,7 +57,7 @@ function minifyImg() {
         optimizationLevel: 5,
         progressive: true,
         interlaced: false,
-        multipass: false,
+        multipass: false
       })
     )
     .pipe(dest('./public/img'))
