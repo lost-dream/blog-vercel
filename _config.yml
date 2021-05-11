@@ -56,6 +56,11 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# hexo-tag-cloud
+
+tag_cloud:
+  outlineColor: '#fc642375'
+
 live2d:
   model:
     use: live2d-widget-model-z16

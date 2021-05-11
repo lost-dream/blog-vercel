@@ -82,6 +82,19 @@ menu_icons:
   html: html5
 
 # ---------------------------------------------------------------
+# Gitment Settings
+# ---------------------------------------------------------------
+
+gitalk:
+  enable: true # 是否启用
+  owner: lost-dream # 用户名
+  admin: lost-dream # 用户名
+  repo: lost-dream.github.io # 存放评论的仓库名
+  clientID: 596ac7728fd178ed4d4e			#上面注册 OAuth Application 的 Client ID
+  clientSecret: 5f75ee1fd71fb39ef53b4e3809324d1cbb5bf1d1 # Github Application 的 clientSecret
+  distractionFreeMode: true # 评论时遮照效果的开关
+
+# ---------------------------------------------------------------
 # Scheme Settings
 # ---------------------------------------------------------------
 
