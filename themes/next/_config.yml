@@ -728,3 +728,6 @@ cursor_effect:
   type: fireworks
   # type: explosion
   # type: text
+
+passage_end_tag:
+  enabled: true
