@@ -1286,6 +1286,7 @@ $i: 6;
 > 混合指令类似于 javascript 函数,除非引用，否则不会出现在结果中**
 
 也可以不使用父选择器在最外层直接引用混合样式
+
 ```scss
 @mixin silly-links {
   a {
@@ -1546,7 +1547,7 @@ $map: (
   $key1: value1,
   $key2: value2,
   $key3: value3
-)
+);
 
 $map: (
   key1: value1,
@@ -1616,7 +1617,7 @@ $social-colors: (
 }
 
 /*得到所有的值*/
-map-values($social-colors)
+$values: map-values($social-colors);
 
 $color: (
   text: #f36,
@@ -1628,13 +1629,13 @@ $typo:(
   font-size: 12px,
   line-height: 1.6
 );
-$newcolor = map-merge($color, $typo);
+$newcolor: map-merge($color, $typo);
 
 /* 得到新值 */
 $map:map-remove($social-colors,dribble);
 ```
 
-```scss
+```html
 <ul class="swatches red">
   <li></li>
   ...
@@ -1665,8 +1666,9 @@ $map:map-remove($social-colors,dribble);
   …
   <li></li>
 </ul>
+```
 
-<style>
+```scss
 $redBase: #DC143C;
 $orangeBase: saturate(lighten(adjust_hue($redBase, 39), 5), 7);//#f37a16
 $yellowBase: saturate(lighten(adjust_hue($redBase, 64), 6), 13);//#fbdc14
@@ -1775,7 +1777,6 @@ ul.black {
     background-color: $blackBase;
   }
 }
-</style>
 ```
 
 ## 最后附上一个rem的例子
