@@ -103,10 +103,13 @@ description: css3关于伪元素那些你可能不知道的事
   }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/jKyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ### 插入属性
+
 content属性可以直接获取元素的属性，包括自有属性和自定义属性。本文中出现的问题也是通过这个方法解决的。
+
 ```vue
 <template>
   <div text="哈哈哈哈哈"></div>
@@ -134,10 +137,13 @@ content属性可以直接获取元素的属性，包括自有属性和自定义�
   }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/BKyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ### 插入图片
+
 没什么好解释的，和css引用图片类似
+
 ```html
   <div>这是h3</div>
   <style>
@@ -146,9 +152,13 @@ content属性可以直接获取元素的属性，包括自有属性和自定义�
     }
   </style>
 ```
+
 ### 插入编号
+
 利用css的counter属性产生自增的编号，并且可以自定义和生成更复杂的编号。
+
 #### 插入基本的编号
+
 ```html
 <h1>这是一个标题</h1>
 <h1>这是一个标题</h1>
@@ -163,9 +173,11 @@ content属性可以直接获取元素的属性，包括自有属性和自定义�
   }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/uKyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 #### 自定义编号
+
 ```html
 <h1>这是一个标题</h1>
 <h1>这是一个标题</h1>
@@ -181,9 +193,11 @@ content属性可以直接获取元素的属性，包括自有属性和自定义�
   }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/SKyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ### 修改编号种类
+
 > 编号的种类 === ul的list-style-type属性值。
 
 ```html
@@ -201,9 +215,11 @@ content属性可以直接获取元素的属性，包括自有属性和自定义�
   }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/KpyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 #### 更复杂的多层嵌套编号
+
 > 大编号嵌套中编号嵌套小编号……
 
 ```html
@@ -247,7 +263,9 @@ content属性可以直接获取元素的属性，包括自有属性和自定义�
   }
 </style>
 ```
+
 <iframe width="100%" height="300" src="//jsrun.net/kpyKp/embedded/all/light/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ## 结语
+
 最后附上张鑫旭的一篇文章： [小tip:CSS计数器+伪类实现数值动态计算与呈现](https://www.zhangxinxu.com/wordpress/2014/12/css-counters-pseudo-class-checked-numbers/)
