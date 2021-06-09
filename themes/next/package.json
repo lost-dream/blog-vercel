@@ -6,9 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "test": "gulp"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iissnan/hexo-theme-next.git"
