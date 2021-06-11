@@ -1,3 +1,4 @@
+---
 title: video小记
 tags: [video]
 date: 2018-01-24 15:43:53
@@ -8,12 +9,16 @@ description: video标签的属性和方法
 > html5新增的audio和video有很多的相同之处，本节中的绝大部分属性和方法在audio同样适用。
 
 ## video标签的使用
+
 如果你想使用视频，最简单的方法:
-```
+
+```html
  <video id="video" src="movie.mp4"></video>
 ```
+
 但在大多数情况下不建议这样使用，因为视频格式可能不支持。所以你要写成这样:
-```
+
+```html
  <video id="video">
     <source src="movie.mp4" type="video/mp4">
     <source src="movie.ogg" type="video/ogg">
@@ -21,18 +26,23 @@ description: video标签的属性和方法
     ...
   </video>
 ```
+
 这样你可以使用多种视频格式，如果不支持会尝试下一种格式。**目前，video元素支持三种视频格式：MP4、WebM、Ogg。**
 
 ## video标签的属性
+
 本质上，video对象也是一个普通的DOM对象，你可以像选取普通的DOM对象一样选中它:
-```
+
+```js
 //  javascript
 var video = document.getElementById('cideo');
 
 //  jquery
 var video =  $('#video').get(0);
 ```
+
 video标签有以下属性:
+
 + autoplay: 如果出现该属性，则视频在就绪后马上播放
 + controls: 如果出现该属性，则向用户显示控件
 + width: 视频宽度
@@ -44,6 +54,7 @@ video标签有以下属性:
 + loop: 如果出现该属性，则当媒介文件完成播放后再次开始播放
 
 ## video对象的属性
+
 + audioTracks: 返回表示可用音频轨道的 AudioTrackList 对象。
 + autoplay: 设置或返回是否在就绪（加载完成）后随即播放视频。
 + buffered: 返回表示视频已缓冲部分的 TimeRanges 对象。
@@ -78,10 +89,12 @@ video标签有以下属性:
 + width: 设置或返回视频的 width 属性的值。
 
 ## video对象的方法
+
 + video.play(): 开始播放
 + video.pause(): 暂停播放
 
 ## video对象的事件
+
 + video.onloadstart = fn(): 客户端开始请求数据时触发
 + video.onprogress = fn(): 客户端正在请求数据时触发
 + video.onsuspend = fn(): 延迟下载时触发

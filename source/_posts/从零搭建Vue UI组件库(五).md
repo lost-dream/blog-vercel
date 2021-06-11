@@ -89,7 +89,6 @@ config.options
       slugify: slugify,
       permalink: true,
       permalinkBefore: false,
-      // TODO anchorPlugin 锚点点击出错怎么处理
       // permalinkSymbol: '#'
       permalinkSymbol: ''
     }
@@ -265,7 +264,7 @@ function genInlineComponentText(template, script) {
   }
   const finalOptions = {
     source: `<div>${source}</div>`,
-    filename: 'inline-component', // TODO：这里有待调整
+    filename: 'inline-component',
     compiler: TemplateCompiler,
     compilerOptions: {
       mode: 'function'

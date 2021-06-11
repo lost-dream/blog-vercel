@@ -700,9 +700,9 @@ var document = global.document || undefined
 function matches( node, selector, bypassNodeType39 ) {
   var Efn = Element.prototype
   var matches = Efn.matches || Efn.mozMatchesSelector || Efn.msMatchesSelector || Efn.webkitMatchesSelector
-  
+
   if ( node instanceof Element ) {
-    return matches.call( node, selector ) 
+    return matches.call( node, selector )
   } else if ( bypassNodeType39 ) {
     if ( /^[39]$/.test( node.nodeType ))  return true
   }
@@ -744,7 +744,7 @@ Fibre.fn = Fibre.prototype = {
     }
 
     if ( !context ) {
-      throw new Error( 'A context is required for Fibre to initialise.' ) 
+      throw new Error( 'A context is required for Fibre to initialise.' )
     } else if ( context instanceof Node ) {
       if ( context instanceof Document )  this.context = context.body || context
       else  this.context = context
@@ -820,23 +820,23 @@ Fibre.fn = Fibre.prototype = {
   replace: function( regexp, newSubStr ) {
     var it = this
     it.finder.push(Finder( it.context, {
-      find: regexp, 
+      find: regexp,
       replace: newSubStr,
       filterElements: function( currentNode ) {
         return it.filterFn( currentNode )
-      }, 
+      },
       forceContext: function( currentNode ) {
         return it.boundaryFn( currentNode )
       },
       portionMode: it.portionMode
     }))
-    return it 
+    return it
   },
 
   wrap: function( regexp, strElemName ) {
     var it = this
     it.finder.push(Finder( it.context, {
-      find: regexp, 
+      find: regexp,
       wrap: strElemName,
       filterElements: function( currentNode ) {
         return it.filterFn( currentNode )
@@ -850,7 +850,7 @@ Fibre.fn = Fibre.prototype = {
   },
 
   revert: function( level ) {
-    var max = this.finder.length        
+    var max = this.finder.length
     var level = Number( level ) || ( level === 0 ? Number(0) :
       ( level === 'all' ? max : 1 ))
 
@@ -934,7 +934,7 @@ return Fibre
           m.index += m[0].indexOf(cg)
           m[0] = cg
         }
-     
+
         m.endIndex = m.index + m[0].length
         m.startIndex = m.index
         m.index = mi
@@ -948,9 +948,9 @@ return Fibre
     return true
   }
 
-  /** 
+  /**
    * findAndReplaceDOMText
-   * 
+   *
    * Locates matches and replaces with replacementNode
    *
    * @param {Node} node Element or Text node to search within
@@ -1083,7 +1083,7 @@ return Fibre
       if (!match[0]) {
         throw new Error('findAndReplaceDOMText cannot handle zero-length matches')
       }
-   
+
       match.endIndex = characterOffset + match.index + match[0].length
       match.startIndex = characterOffset + match.index
       match.index = matchIndex
@@ -1144,10 +1144,10 @@ return Fibre
         } while (node = node.nextSibling)
         return txt
       }
-      
+
     },
 
-    /** 
+    /**
      * Steps through the target node, looking for matches, and
      * calling replaceFn when a match is found.
      */
@@ -1213,7 +1213,7 @@ return Fibre
 
           curNode = this.replaceMatch(match, startPortion, innerPortions, endPortion)
           // processMatches has to return the node that replaced the endNode
-          // and then we step back so we can continue from the end of the 
+          // and then we step back so we can continue from the end of the
           // match:
 
           atIndex -= (endPortion.node.data.length - endPortion.endIndexInNode)
@@ -2174,7 +2174,7 @@ function createNormalRu( $rb, $rt, attr ) {
   if ( Array.isArray( $rb )) {
     $ru.innerHTML = $rb.map(function( rb ) {
       if ( typeof rb === 'undefined' )  return ''
-      return rb.outerHTML 
+      return rb.outerHTML
     }).join('') + $rt.outerHTML
   } else {
     $ru.appendChild( $.clone( $rb ))
@@ -2261,11 +2261,6 @@ $.extend( Locale, {
   renderComplexRuby:   renderComplexRuby,
   renderSimpleRuby:    renderSimpleRuby,
   renderInterCharRuby: renderInterCharRuby
-
-  // ### TODO list ###
-  //
-  // * Debug mode
-  // * Better error-tolerance
 })
 
 /**
@@ -3002,4 +2997,3 @@ if ( typeof noGlobalNS === 'undefined' || noGlobalNS === false ) {
 
 return Han
 });
-
