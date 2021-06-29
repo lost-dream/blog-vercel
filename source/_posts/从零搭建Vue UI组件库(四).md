@@ -16,11 +16,11 @@ description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 
 ### 安装依赖
 
-```
+```npm
 npm install babel-eslint eslint prettier eslint-config-prettier eslint-import-resolver-alias  eslint-plugin-prettier  eslint-plugin-vue @typescript-eslint/eslint-plugin @typescript-eslint/parser -D -W
 ```
 
-```
+```npm
 npm install -D stylelint stylelint-config-prettier stylelint-config-standard stylelint-order stylelint-scss -W
 ```
 
@@ -374,7 +374,7 @@ module.exports = {
 
 ### 添加`git hook`
 
-```
+```npm
 yarn add -D lint-staged yorkie -W
 ```
 

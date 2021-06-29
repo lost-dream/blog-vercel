@@ -10,7 +10,7 @@ description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 
 ### 添加 typescript、ts-loader、sass、sass-loader
 
-```
+```npm
 yarn add -D typescript ts-loader sass sass-loader -W
 ```
 

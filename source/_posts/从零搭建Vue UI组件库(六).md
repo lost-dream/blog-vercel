@@ -78,4 +78,4 @@ createApp(App)
 
 组件方面，我也有打算一直维护，并且不参考任何框架，有时间就按自己的想法去尝试一下。
 
-最后再附上[本项目仓库地址](https://github.com/lost-dream/zcm-admin-ui)，希望有幸看到这篇文章你也能有所收获。
+最后再附上[本项目仓库地址](https://github.com/lost-dream/zcm-admin-ui)，希望有幸看到这篇文章你也能有所收获

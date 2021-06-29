@@ -1,3 +1,4 @@
+---
 title: 关于webpack的那些事
 tags: [webpack]
 date: 2018-03-22 10:37:40
@@ -5,7 +6,8 @@ categories: [webpack]
 description: 一篇webpack笔记
 ---
 ## Entry - 配置模块入口
-```
+
+```js
 //  配置多入口文件
 const glob = require('glob');
 const pagePath = path.resolve(__dirname,'./src')
@@ -19,8 +21,10 @@ function entries() {
   return map
 }
 ```
+
 ## Output - 配置模块如何输出成为结果
-```
+
+```js
 //  配置多个文件打包
 const glob = require('glob');
 const pagePath = path.resolve(__dirname,'./src')
@@ -47,8 +51,10 @@ function htmlPlugin(options) {  //  options: 自定义缺省的htmlWebpackPlugin
   return arr
 }
 ```
+
 ## Module - 配置模块的处理规则
-```
+
+```js
 module:{
   rules:[
     {
@@ -85,8 +91,10 @@ module:{
   ]
 }
 ```
-##  Resolve - 自定义模块的解析方式
-```
+
+## Resolve - 自定义模块的解析方式
+
+```js
  resolve: {
     //  导入文件没有后缀时，webpack尝试自动补全，顺序由前到后
     extensions: ['.js', '.vue', '.json'],
@@ -97,9 +105,12 @@ module:{
     }
   }
 ```
+
 ## Plugin - 简单粗暴地解释：如果你遇到一个webpack无法处理的操作，那他一定可以通过插件来解决
+
 > 该配置简单到无法解释，接受一个数组，添加插件即可。所有插件及用法[看这里](https://doc.webpack-china.org/plugins/)
-```
+
+```js
 plugin:[
   new webpack.ProvidePlugin({ //  这个插件用来配置全局jquery
     $: "jquery",
@@ -111,21 +122,30 @@ plugin:[
   ...
 ]
 ```
+
 ## DevSever - 构建本地开发环境
+
 > 具体配置[移步这里](https://doc.webpack-china.org/configuration/dev-server/)
+
 ## 一些问题
+
 ### 项目中使用sass
+
 webpack.base.conf.js中的module新加一项：
-```
+
+```js webpack.base.conf.js
 {
   test: /\.scss$/,
   use: ["style-loader","css-loader?minimize","sass-loader"],
   exclude:path.resolve(__dirname,'node_modules')
 }
 ```
+
 ### 项目中使用jquery插件
+
 webpack.base.conf.js中的module新加plugin：
-```
+
+```js webpack.base.conf.js
 plugins: [
   new webpack.ProvidePlugin({
     $: "jquery",

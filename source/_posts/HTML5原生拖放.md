@@ -1,22 +1,34 @@
+---
 title: HTML5原生拖放
 tags: [draggable, html5]
 date: 2017-11-07 14:59:28
 categories: [html5]
 description: HTML5拖放API及示例
 ---
-## 拖放（Drag 和 drop）是HTML5标准的组成部分
-### 拖放
+> 拖放（Drag 和 drop）是HTML5标准的组成部分
+
+## 拖放
+
 拖放是一种常见的特性，即抓取对象以后拖放到其他位置。在 HTML5 中，拖放是标准的一部分，任何元素都可以被拖放。
-### 浏览器支持
+
+## 浏览器支持
+
 Internet Explorer 9 + 、Firefox、Opera 12 + 、Chrome 以及 Safari 5 +  支持拖放。
+
 ## 拖放API
+
 ### draggable属性
+
 如果希望一个网页元素可以被拖动，只需要将他的draggable属性设置为true，这个元素就可以拖动了。
-```
+
+```html
 <div draggable="true">拖动我试试</div>
 ```
+
 ### 事件
+
 拖动的过程会触发许多事件，主要有下面这些：
+
 * `dragstart`：网页元素开始拖动时触发。
 * `drag`：被拖动的元素在拖动过程中持续触发。
 * `dragenter`：被拖动的元素进入目标元素时触发，应在目标元素监听该事件。
@@ -26,40 +38,47 @@ Internet Explorer 9 + 、Firefox、Opera 12 + 、Chrome 以及 Safari 5 +  支�
 * `dragend`：网页元素拖动结束时触发。
 
 以上函数均可以指定回调函数：
-```
+
+```js
 draggableElement.addEventListener('dragstart', function(e) {
     alert('拖放开始！')
     console.log(e);
 });
 ```
+
 >拖动过程中，鼠标移动事件将不会被触发。
 
 ### dataTransfer对象
+
 拖动过程中，回调函数接受的事件参数，有一个`dataTransfer`属性。它指向一个对象，包含了与拖动相关的各种信息。
 dataTransfer对象的属性：
+
 * dropEffect：拖放的操作类型，决定了浏览器如何显示鼠标形状，可能的值为copy、move、link和none。
 * effectAllowed：指定所允许的操作，可能的值为copy、move、link、copyLink、copyMove、linkMove、all、none和uninitialized（默认值，等同于all，即允许一切操作）。
 * files：包含一个FileList对象，表示拖放所涉及的文件，主要用于处理从文件系统拖入浏览器的文件。
 * types：储存在DataTransfer对象的数据的类型。
 
 dataTransfer对象的方法：
+
 * setData(format, data)：在dataTransfer对象上储存数据。第一个参数format用来指定储存的数据类型，比如text、url、text/html等。
 * getData(format)：从dataTransfer对象取出数据。
 * clearData(format)：清除dataTransfer对象所储存的数据。如果指定了format参数，则只清除该格式的数据，否则清除所有数据。
 * setDragImage(imgElement, x, y)：指定拖动过程中显示的图像。默认情况下，许多浏览器显示一个被拖动元素的半透明版本。参数imgElement必须是一个图像元素，而不是指向图像的路径，参数x和y表示图像相对于鼠标的位置。
 
-```
+```js
 draggableElement.addEventListener('dragstart', function(event) {
     event.dataTransfer.setData('text', 'Hello World!');
 });
 ```
-上面代码在拖动开始时，在dataTransfer对象上储存一条文本信息，内容为“Hello World！”。当拖放结束时，可以用getData方法取出这条信息。                
+
+上面代码在拖动开始时，在dataTransfer对象上储存一条文本信息，内容为“Hello World！”。当拖放结束时，可以用getData方法取出这条信息。
 >dataTransfer对象允许在其上存储数据，这使得在被拖动元素与目标元素之间传送信息成为可能。
 
-## 实例 
+## 实例
+
 ### 简单拖放
-```
-/* html */
+
+```html
 <ul id="drag-elements">
   <li id="A" draggable="true"><img src="1.jpg" alt="" /></li>
   <li id="B" draggable="true"><img src="2.jpg" alt="" /></li>
@@ -71,7 +90,7 @@ draggableElement.addEventListener('dragstart', function(event) {
   <li id="H" draggable="true"><img src="8.jpg" alt="" /></li>
 </ul>
 
-/* css */
+<style>
 ul {
   margin:0 auto;
   width:800px;
@@ -95,7 +114,9 @@ li {
   width:200px;
   height:125px;
 }
-/* js */
+</style>
+
+<script>
 var dragElements = document.querySelectorAll('#drag-elements li');
 var elementDragged = null;
 for (var i = 0; i < dragElements.length; i++) {
@@ -129,7 +150,7 @@ for (var i = 0; i < dragElements.length; i++) {
   });
   dragElements[i].addEventListener('drop', function (e) {
     e.preventDefault();
-    e.stopPropagation();  
+    e.stopPropagation();
     var targetId = e.dataTransfer.getData('text');
     elementDragged.removeAttribute('class');
     return false;
@@ -138,10 +159,12 @@ for (var i = 0; i < dragElements.length; i++) {
     elementDragged = null;
   });
 };
+</script>
 ```
+
 ### 拖放网元素
-```
-/* html */
+
+```html
 <ul id="drag-elements">
     <li draggable="true">A</li>
     <li draggable="true">B</li>
@@ -149,7 +172,7 @@ for (var i = 0; i < dragElements.length; i++) {
 </ul>
 <ul id="drop-target"></ul>
 
-/* css */
+<style>
 ul{
     min-height:100px;
     background-color:#EEE;
@@ -162,8 +185,9 @@ ul li{
     margin-bottom:10px;
     list-style: none;
 }
+</style>
 
-/* js */
+<script>
 // 获取dom元素
 var target = document.querySelector('#drop-target');
 var dragElements = document.querySelectorAll('#drag-elements li');
@@ -172,7 +196,7 @@ var dragElements = document.querySelectorAll('#drag-elements li');
 var elementDragged = null;
 
 // 对可以拖放的元素绑定 dragstart 和 dragend 事件
-for (var i = 0; i < dragElements.length; i++) {
+for (var i = 0; i <script dragElements.length; i++) {
   dragElements[i].addEventListener('dragstart', function(e) {
     e.dataTransfer.setData('text', this.innerHTML);
     elementDragged = this;
@@ -197,15 +221,17 @@ target.addEventListener('drop', function(e) {
   document.querySelector('#drag-elements').removeChild(elementDragged);
   return false;
 });
+</script>
 ```
+
 ### 拖放文件
-```
-/* html */
+
+```html
 <div id="target" title="拖动文件到这里">
   <div id="content"></div>
 </div>
 
-/* css */
+<style>
 #target{
   margin:10px;
   min-height:100px;
@@ -219,7 +245,8 @@ target.addEventListener('drop', function(e) {
   font-size:18px;
   line-height:25px;
 }
-
+</style>
+<script>
 /* js */
 // 首先获取拖动的目标元素和内容展示区域
 var target = document.querySelector('#target');
@@ -235,7 +262,7 @@ target.addEventListener('dragover', function(e) {
 
 // 最后定义目标元素的drop事件,展示文件内容
 target.addEventListener('drop', function(e) {
-  e.preventDefault(); 
+  e.preventDefault();
   e.stopPropagation();
   var fileList = e.dataTransfer.files;
   if (fileList.length > 0) {
@@ -250,9 +277,12 @@ target.addEventListener('drop', function(e) {
     reader.readAsBinaryString(file);
   }
 });
+</script>
 ```
+
 ### 最后附一份最近完成的基于Vue的完整的拖放实例
-```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -408,7 +438,5 @@ target.addEventListener('drop', function(e) {
     })
 </script>
 </body>
-
 </html>
-
 ```

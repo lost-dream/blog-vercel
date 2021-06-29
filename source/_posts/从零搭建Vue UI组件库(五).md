@@ -14,7 +14,6 @@ description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 
 ## 安装依赖
 
-
 ### markdown 相关依赖
 
 安装解析 markdown 语法的依赖
@@ -627,7 +626,6 @@ export enum Language {
 
 + `:::demo demo-desc`是固定的语法，一定要这样写，下面的源码才会被编译成示例
 + 示例中的`dt-button`，对应的是 button 组件中，vue 的 name
-
 
 ## 增加 build:docs命令
 
