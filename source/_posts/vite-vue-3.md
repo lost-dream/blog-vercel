@@ -3,8 +3,7 @@ title: vue3 脚手架（三）
 tags: [vue3, vite]
 date: 2021-07-05 08:59:14
 categories: [vue]
-description: 使用 vite 搭建 vue3 项目
-name: vscode
+description: vite 环境配置和 vue 全家桶添加
 top: 10
 ---
 

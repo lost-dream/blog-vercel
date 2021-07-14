@@ -3,8 +3,7 @@ title: vue3 脚手架（四）
 tags: [vue3, vite]
 date: 2021-07-06 10:36:18
 categories: [vue]
-description: 使用 vite 搭建 vue3 项目
-name: vscode
+description: 添加 element-ui 和 tailwindcss
 top: 10
 ---
 
@@ -73,4 +72,4 @@ async function bootstrap() {
 
 ## tailwindcss
 
-参考[官方文档](https://tailwindcss.com/docs/guides/vue-3-vite), 安装配置
+参考[官方文档](https://tailwindcss.com/docs/guides/vue-3-vite#setting-up-tailwind-css), 安装配置

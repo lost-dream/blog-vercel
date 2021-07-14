@@ -3,7 +3,7 @@ title: vue3 脚手架（一）
 tags: [vue3, vite]
 date: 2021-06-29 13:37:16
 categories: [vue]
-description: 使用 vite 搭建 vue3 项目
+description: 创建 vite 脚手架，添加 lint 配置
 top: 10
 ---
 > 这系列文章借由 vue3 脚手架搭建，过程中顺便写写自己的开发规范和编辑器习惯。
