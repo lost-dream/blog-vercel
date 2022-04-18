@@ -25,14 +25,14 @@ function minifyHtml() {
   return (
     src('./public/**/*.html')
       .pipe(htmlClean())
-      // .pipe(
-      //   htmlmin({
-      //     removeComments: true,
-      //     minifyCSS: true,
-      //     minifyJS: true,
-      //     minifyURLs: true,
-      //   })
-      // )
+      .pipe(
+        htmlmin({
+          removeComments: true,
+          minifyCSS: true,
+          minifyJS: true,
+          minifyURLs: true,
+        })
+      )
       .pipe(dest('./public'))
   )
 }
