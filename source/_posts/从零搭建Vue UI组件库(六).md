@@ -1,9 +1,13 @@
 ---
 title: 从零搭建Vue UI组件库(六)
-date: 2021-04-26 10:42:23
-tags: [Vue, adminUI]
-categories: [adminUI]
+tags:
+  - Vue
+  - adminUI
+categories:
+  - adminUI
 description: 尝试搭建自己的Vue UI 组件库(完)
+abbrlink: 81531f83
+date: 2021-04-26 10:42:23
 ---
 
 上一步中,已经实现了本地开发 + 应用打包的全部流程, 开发 UI 框架的这套框架本身就已经完成了。现在只需要打包上传到 npm, 框架本身也完成了。剩下的就只是不断完善组件了。

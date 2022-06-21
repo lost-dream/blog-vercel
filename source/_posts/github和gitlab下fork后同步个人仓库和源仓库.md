@@ -1,9 +1,13 @@
 ---
 title: github下fork后同步个人仓库和源仓库
-tags: [git,GitHub]
-date: 2017-10-19 11:16:52
-categories: [git]
+tags:
+  - git
+  - GitHub
+categories:
+  - git
 description: github下fork后同步个人仓库和源仓库
+abbrlink: 669f7be9
+date: 2017-10-19 11:16:52
 ---
 ### 首先要先确定一下是否建立了主repo的远程源
 

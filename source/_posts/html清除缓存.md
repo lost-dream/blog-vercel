@@ -1,9 +1,13 @@
 ---
 title: html 清除缓存
-tags: [html5, cache]
-date: 2017-11-25 08:25:15
-categories: [html5]
+tags:
+  - html5
+  - cache
+categories:
+  - html5
 description: 通过前端的方法清除浏览器缓存
+abbrlink: 908eabcd
+date: 2017-11-25 08:25:15
 ---
 
 ## 通过设置 meta 标签清除页面缓存

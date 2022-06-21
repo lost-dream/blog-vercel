@@ -1,9 +1,13 @@
 ---
 title: 从零搭建Vue UI组件库(一)
+tags:
+  - Vue
+  - adminUI
+categories:
+  - adminUI
+description: '尝试搭建自己的Vue UI 组件库, 持续更新(大概)'
+abbrlink: 357654ca
 date: 2021-04-15 09:55:41
-tags: [Vue, adminUI]
-categories: [adminUI]
-description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 ---
 
 Vue3 发布以来,一直在学习, 最近萌生出想要尝试自己搭建组件库的想法,正赶上开发任务不重,就在此尝试一下,一来提升一下能力,二来看能不能搭建成功。

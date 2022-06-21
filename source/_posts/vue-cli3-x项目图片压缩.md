@@ -1,9 +1,16 @@
 ---
 title: vue-cli3.x项目图片压缩
-tags: [webpack, vue, compress]
-date: 2019-05-07 17:04:27
-categories: [webpack, vue, compress]
+tags:
+  - webpack
+  - vue
+  - compress
+categories:
+  - webpack
+  - vue
+  - compress
 description: vue-cli3.x修改webpack配置，添加压缩图片功能
+abbrlink: aa723535
+date: 2019-05-07 17:04:27
 ---
 
 ## 介绍

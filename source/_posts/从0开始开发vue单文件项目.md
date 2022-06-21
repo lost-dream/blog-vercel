@@ -1,9 +1,13 @@
 ---
 title: 从0开始开发vue单文件项目
-tags: [vue,webpack]
-date: 2019-04-02 19:44:31
-categories: [webpack]
+tags:
+  - vue
+  - webpack
+categories:
+  - webpack
 description: 从0开始自己搭建vue脚手架
+abbrlink: 9da38666
+date: 2019-04-02 19:44:31
 ---
 都说软件开发不需要重复造轮子。但不得不说自己造轮子是掌握和巩固知识点最好的办法。这篇文章带大家从0开始自己写一个最简单的vue脚手架。
 

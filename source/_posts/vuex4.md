@@ -1,9 +1,14 @@
 ---
 title: vuex4 + typescript 配置
-tags: [vue, vue3]
-date: 2021-01-26 11:11:50
-categories: [vue, vue3]
+tags:
+  - vue
+  - vue3
+categories:
+  - vue
+  - vue3
 description: vue3 + vuex4 + typescript 配置
+abbrlink: '11244635'
+date: 2021-01-26 11:11:50
 ---
 说起来惭愧,vue3快正式发布了,我才开始研究语法,好在除了书写习惯需要改变之外,vue 本身的变动并不是很大,但是配合 typescript 之后就不一样了,这篇说一下我的vue3 配置 -- vuex 篇
 

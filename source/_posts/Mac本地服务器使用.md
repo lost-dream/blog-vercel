@@ -1,9 +1,12 @@
 ---
 title: Mac本地服务器使用
-date: 2021-05-07 16:53:46
-tags: [mac]
-categories: [mac]
+tags:
+  - mac
+categories:
+  - mac
 description: 使用Mac自带的Apache服务
+abbrlink: b3a1d004
+date: 2021-05-07 16:53:46
 ---
 
 + Apache命令

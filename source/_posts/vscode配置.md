@@ -1,11 +1,14 @@
 ---
 title: vscode配置
-tags: [vscode]
-date: 2019-12-12 09:22:18
-categories: [vscode]
+tags:
+  - vscode
+categories:
+  - vscode
 description: 分享vscode配置方法和我的vscode配置
 old: WebStorm
 new: vscode
+abbrlink: 789169fd
+date: 2019-12-12 09:22:18
 ---
 开门见山地说，我最近换Mac电脑了。那么我之前一直在用的是[{{old}}](https://www.jetbrains.com/webstorm/)，但这个IDE是要花钱的，在windows可以有很多种方法免费去用它，但苹果电脑就不好使了，所以现在用[new](https://code.visualstudio.com/)作为主要开发工具。
 

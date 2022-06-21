@@ -1,9 +1,13 @@
 ---
 title: 详解vue.use的使用
-tags: [vue, axios]
-date: 2019-02-15 16:35:37
-categories: [vue]
+tags:
+  - vue
+  - axios
+categories:
+  - vue
 description: 详解vue.use的使用方法并附上例子
+abbrlink: e4e18239
+date: 2019-02-15 16:35:37
 ---
 vue,use用来安装 Vue.js 插件。如果插件是一个对象，必须提供 install 方法。如果插件是一个函数，它会被作为 install 方法。install 方法调用时，会将 Vue 作为参数传入。因此vue.use()常需要扩展的用法有两个：添加全局的方法（插件是函数）、添加全局的组件（插件是对象）。
 

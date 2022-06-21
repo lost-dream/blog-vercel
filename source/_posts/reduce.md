@@ -1,9 +1,12 @@
 ---
 title: 试图详解Array.reduce
-tags: [javascript]
-date: 2020-01-15 17:07:34
-categories: [javascript]
+tags:
+  - javascript
+categories:
+  - javascript
 description: reduce 方法介绍 && 示例
+abbrlink: 200f4743
+date: 2020-01-15 17:07:34
 ---
 ## 概念
 

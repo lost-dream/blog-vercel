@@ -1,9 +1,13 @@
 ---
 title: 从零搭建Vue UI组件库(二)
+tags:
+  - Vue
+  - adminUI
+categories:
+  - adminUI
+description: '尝试搭建自己的Vue UI 组件库, 持续更新(大概)'
+abbrlink: 9a47cfa8
 date: 2021-04-15 11:17:57
-tags: [Vue, adminUI]
-categories: [adminUI]
-description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 ---
 
 上一篇结束，使用 webpack 搭建了一个本地服务，事实上还不算项目模板，这篇的目的是编写一个基础的 HelloWorld 组件

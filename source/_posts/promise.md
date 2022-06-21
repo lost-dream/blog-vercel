@@ -1,10 +1,14 @@
 ---
 title: promise 详解
-date: 2020-04-09 14:22:19
-tags: [es6, promise]
-categories: [JavaScript]
+tags:
+  - es6
+  - promise
+categories:
+  - JavaScript
 top: true
 description: 面试中常被问起promise，在这里总结一下
+abbrlink: fa98e2f7
+date: 2020-04-09 14:22:19
 ---
 最近想重新换工作，几乎所有面试都会问到 promise，有简单理解的，也有问到一些比较复杂的实现，有些我是知道的但也有些是不清楚的，所以查阅资料，把关于 promise 的知识补充提升一下。
 

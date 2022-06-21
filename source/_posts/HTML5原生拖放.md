@@ -1,9 +1,13 @@
 ---
 title: HTML5原生拖放
-tags: [draggable, html5]
-date: 2017-11-07 14:59:28
-categories: [html5]
+tags:
+  - draggable
+  - html5
+categories:
+  - html5
 description: HTML5拖放API及示例
+abbrlink: ab93dbf
+date: 2017-11-07 14:59:28
 ---
 > 拖放（Drag 和 drop）是HTML5标准的组成部分
 

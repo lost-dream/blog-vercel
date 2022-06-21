@@ -1,9 +1,12 @@
 ---
 title: Css Grid 语法总结
-tags: [css]
-date: 2021-06-03 16:05:29
-categories: [css]
+tags:
+  - css
+categories:
+  - css
 description: Grid 网格教程语法总结
+abbrlink: ba122d33
+date: 2021-06-03 16:05:29
 ---
 
 ## 写在前面

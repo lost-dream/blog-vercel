@@ -1,9 +1,14 @@
 ---
 title: 监听vuex中state变化
-tags: [Vue, Vuex]
-date: 2021-03-09 14:46:08
-categories: [Vue, Vuex]
+tags:
+  - Vue
+  - Vuex
+categories:
+  - Vue
+  - Vuex
 description: 业务中遇到的监听 vuex 变化的功能
+abbrlink: 5fee686e
+date: 2021-03-09 14:46:08
 ---
 书说简短,直接开整.需求是这样的: 点击变更联系人按钮,跳转到选人列表,点击人员,回到前一页,触发更换联系人功能.
 

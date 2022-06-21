@@ -1,10 +1,13 @@
 ---
 title: 使用SASS
-tags: [sass]
-date: 2017-10-20 14:11:27
-categories: [NodeJs]
+tags:
+  - sass
+categories:
+  - NodeJs
 description: Sass教程
 top: true
+abbrlink: a0cd7745
+date: 2017-10-20 14:11:27
 ---
 > 本文参考[sass 中文网](https://www.sass.hk/docs/),仅作为个人速查文档使用
 

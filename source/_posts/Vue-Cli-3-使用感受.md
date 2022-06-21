@@ -1,9 +1,12 @@
 ---
 title: Vue Cli 3 使用感受
-tags: [vue]
-date: 2018-12-15 14:44:23
-categories: [vue]
+tags:
+  - vue
+categories:
+  - vue
 description: Vue Cli 3 使用心得
+abbrlink: bdecb380
+date: 2018-12-15 14:44:23
 ---
 
 早就听说 vue-cli 有了 3.x 版本，但一直没机会实践。一直到双十一有一个小活动，尝试了一下。感觉到了极度的舒适。新的脚手架做了非常大的修改，具体为删除了 config 和 build 文件夹，改为使用配置文件 vue.config.js，并同时支持**分模式**、**分环境**、**分项目**进行配置，简单的说就是之前脚手架中需要配置在 config 和 build 中的配置，都靠着一个文件来配置，省去了我们在 build 和 config 文件中找配置的地方。下面总结一下主要的变化。**我这里只是做一个总结，并没有（也没必要）添加详细的讲解（反正也不可能比官网讲的清楚）**

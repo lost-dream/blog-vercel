@@ -1,9 +1,12 @@
 ---
 title: 关于webpack的那些事
-tags: [webpack]
-date: 2018-03-22 10:37:40
-categories: [webpack]
+tags:
+  - webpack
+categories:
+  - webpack
 description: 一篇webpack笔记
+abbrlink: 3770e3f
+date: 2018-03-22 10:37:40
 ---
 ## Entry - 配置模块入口
 

@@ -1,9 +1,16 @@
 ---
 title: 关于vue（全家桶）的一些使用心得
-tags: [vue, vuex, axios, webpack, es6+]
-date: 2018-07-15 15:28:46
-categories: [vue]
+tags:
+  - vue
+  - vuex
+  - axios
+  - webpack
+  - es6+
+categories:
+  - vue
 description: vue重够jquery项目之后的一些心得
+abbrlink: da970c1a
+date: 2018-07-15 15:28:46
 ---
 ## 写在前面
 

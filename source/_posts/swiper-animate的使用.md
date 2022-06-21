@@ -1,9 +1,13 @@
 ---
 title: swiper-animate 的使用
-tags: [carousel,animate]
-date: 2018-02-03 17:39:52
-categories: [swiper]
+tags:
+  - carousel
+  - animate
+categories:
+  - swiper
 description: 使用 swiper-animate 创建自己的动画
+abbrlink: eb78432c
+date: 2018-02-03 17:39:52
 ---
 
 使用 swiper 创建动画时，有时需要制作一些 css 的动画丰富你的网页。swiper 提供了快速制作 css 动画效果的小插件，适用于所有版本 swiper。

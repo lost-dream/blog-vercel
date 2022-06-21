@@ -1,9 +1,12 @@
 ---
 title: 关于sticky-footer兼容性最好的一种解决方案
-tags: [css]
-date: 2017-10-31 09:16:58
-categories: [css]
+tags:
+  - css
+categories:
+  - css
 description: sticky-footer解决方案
+abbrlink: 32cea130
+date: 2017-10-31 09:16:58
 ---
 ## 什么是 sticky-footer？
 

@@ -1,9 +1,13 @@
 ---
 title: 关于vue-awesome-swiper以及vue-cli升级随笔
-tags: [vue,carousel]
-date: 2017-12-10 09:58:04
-categories: [swiper]
+tags:
+  - vue
+  - carousel
+categories:
+  - swiper
 description: 解决一些关于升级带来的困扰
+abbrlink: 5f910c3c
+date: 2017-12-10 09:58:04
 ---
 ## 关于 vue-cli
 

@@ -1,11 +1,15 @@
 ---
 title: vue3 脚手架（二）
-tags: [vue3, vite]
-date: 2021-07-01 19:22:04
-categories: [vue]
+tags:
+  - vue3
+  - vite
+categories:
+  - vue
 description: vscode 配置 vue 开发环境
 name: vscode
 top: 10
+abbrlink: 47d5abcf
+date: 2021-07-01 19:22:04
 ---
 
 > 本文仓库地址为: [vue3-template](https://github.com/lost-dream/vue3-template)

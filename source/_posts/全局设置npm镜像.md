@@ -1,9 +1,12 @@
 ---
 title: 全局设置npm镜像
-tags: [NodeJs]
-date: 2017-11-15 08:43:46
-categories: [NodeJs]
+tags:
+  - NodeJs
+categories:
+  - NodeJs
 description: 全局设置npm镜像
+abbrlink: 566c1c93
+date: 2017-11-15 08:43:46
 ---
 通过命令`npm config set registry https://registry.npm.taobao.org`设置
 或者通过命令`npm config ls -s`查看详细的全局配置

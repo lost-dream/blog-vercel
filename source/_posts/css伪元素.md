@@ -1,9 +1,12 @@
 ---
 title: css伪元素
-tags: [css3]
-date: 2019-05-10 15:41:04
-categories: [css3]
+tags:
+  - css3
+categories:
+  - css3
 description: css3关于伪元素那些你可能不知道的事
+abbrlink: 614e4fa6
+date: 2019-05-10 15:41:04
 ---
 ## 因为一个背景图引发的思考
 

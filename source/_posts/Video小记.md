@@ -1,9 +1,12 @@
 ---
 title: video小记
-tags: [video]
-date: 2018-01-24 15:43:53
-categories: [video]
+tags:
+  - video
+categories:
+  - video
 description: video标签的属性和方法
+abbrlink: bf8c326
+date: 2018-01-24 15:43:53
 ---
 
 > html5新增的audio和video有很多的相同之处，本节中的绝大部分属性和方法在audio同样适用。

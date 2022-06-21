@@ -1,9 +1,12 @@
 ---
 title: git命令
-date: 2017-09-25 10:10:23
-tags: [git]
-categories: [git]
+tags:
+  - git
+categories:
+  - git
 description: git常用命令大全
+abbrlink: 341ecd43
+date: 2017-09-25 10:10:23
 ---
 >本博客旨在记录常用git命令。如果希望得到更多关于git的知识，请移步到[廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)，有非常详细的教程资料。
 

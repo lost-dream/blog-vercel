@@ -1,9 +1,13 @@
 ---
 title: 从零搭建Vue UI组件库(四)
+tags:
+  - Vue
+  - adminUI
+categories:
+  - adminUI
+description: '尝试搭建自己的Vue UI 组件库, 持续更新(大概)'
+abbrlink: 1ef7008c
 date: 2021-04-16 11:32:26
-tags: [Vue, adminUI]
-categories: [adminUI]
-description: 尝试搭建自己的Vue UI 组件库, 持续更新(大概)
 ---
 
 ## 写在前面

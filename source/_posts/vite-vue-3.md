@@ -1,10 +1,14 @@
 ---
 title: vue3 脚手架（三）
-tags: [vue3, vite]
-date: 2021-07-05 08:59:14
-categories: [vue]
+tags:
+  - vue3
+  - vite
+categories:
+  - vue
 description: vite 环境配置和 vue 全家桶添加
 top: 10
+abbrlink: acb089d
+date: 2021-07-05 08:59:14
 ---
 
 > 本文仓库地址为: [vue3-template](https://github.com/lost-dream/vue3-template)

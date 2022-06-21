@@ -1,10 +1,14 @@
 ---
 title: vue3 脚手架（五）
-tags: [vue3, vite]
-date: 2021-07-07 11:00:41
-categories: [vue]
+tags:
+  - vue3
+  - vite
+categories:
+  - vue
 description: 持续优化开发环境
 top: 10
+abbrlink: d278d4bf
+date: 2021-07-07 11:00:41
 ---
 
 > 本文仓库地址为: [vue3-template](https://github.com/lost-dream/vue3-template)

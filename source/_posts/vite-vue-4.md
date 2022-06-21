@@ -1,10 +1,14 @@
 ---
 title: vue3 脚手架（四）
-tags: [vue3, vite]
-date: 2021-07-06 10:36:18
-categories: [vue]
+tags:
+  - vue3
+  - vite
+categories:
+  - vue
 description: 添加 element-ui 和 tailwindcss
 top: 10
+abbrlink: bde611f8
+date: 2021-07-06 10:36:18
 ---
 
 > 本文仓库地址为: [vue3-template](https://github.com/lost-dream/vue3-template)

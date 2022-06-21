@@ -1,9 +1,13 @@
 ---
 title: markdown语法大全
-tags: [markdown, blog]
-date: 2019-11-29 09:22:15
-categories: [markdown]
+tags:
+  - markdown
+  - blog
+categories:
+  - markdown
 description: 竟然还有开发不懂markdown？
+abbrlink: 5e114e90
+date: 2019-11-29 09:22:15
 ---
 ## 引言
 
