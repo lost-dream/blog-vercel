@@ -4,7 +4,8 @@ tags:
   - css
 categories:
   - css
-description: '说说我对原子化 css 的一些理解'
+description: 说说我对原子化 css 的一些理解
+abbrlink: c29d9667
 date: 2022-07-13 09:35:13
 ---
 
@@ -47,7 +48,7 @@ date: 2022-07-13 09:35:13
 
 > 那同事就又问了，这不就是直接赋值了 style 属性吗，只是相当于提供了属性的简写，有什么好吹嘘的？
 
-确实，如果 windicss 仅仅是提供了原子化 css 的语法，确实是没必要吹嘘它有多好。**事实上，除了原子化的语法，windicss 还提供了很多方法。这些放在后面来说，**。本节先来讨论组件化和原子化的优缺点。
+确实，如果 windicss 仅仅是提供了原子化 css 的语法，确实是没必要吹嘘它有多好。**事实上，除了原子化的语法，windicss 还提供了很多方法。这些放在后面来说，**本节先来讨论组件化和原子化的优缺点。
 
 具体对比之前，还要插一句同事的意见，他认为**windicss 的引入加入了新的成本，我们需要去记住他们原子化的 class 名和各自的用法，不如直接写来得方便。**然而我想说的是，首先 windicss 的语法已经尽量语义化，记忆的负担并不会太大。其次，vscode 有对应的插件对语法有自动补全，事半功倍。最后，新的技术出现势必会导致我们需要去记住他们的用法，vue 需要你去记住`.vue`文件的各种格式，`computed/methods/mounted`等大家倒背如流的东西，当时不也都是你的学习成本吗？，就连原生的语法新出了都是要学习和记忆的，干这行就应该保持持续学习和记忆的能力，我认为这是程序员的基础。
 
@@ -80,7 +81,7 @@ date: 2022-07-13 09:35:13
 
 [unocss](https://github.com/unocss/unocss)是[antfu](https://github.com/antfu)大佬开发的 css 引擎。用作者的原话来说
 
-> Inspired by Windi CSS, Tailwind CSS, and Twind
+> Inspired by Windi CSS, Tailwind CSS, and Twind.
 > UnoCSS is an atomic-CSS engine instead of a framework. Everything is designed with flexibility and performance in mind.
 
 这个引擎甚至没有预设的原子化工具类，所有的工具类都是自己定制的。当然应为灵感来自于 Windi CSS、Tailwind CSS，他们的规则已经提供在了自定义预设`@unocss/preset-uno`中。这就意味着，使用`unocss`后，你依然可以使用`windicss`的所有工具类，并且仍然可以自定义自己的工具类。
