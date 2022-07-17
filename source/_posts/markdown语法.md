@@ -15,7 +15,7 @@ date: 2019-11-29 09:22:15
 
 > 因为语法是直接生效的，导致有些地方不方便做比对。建议[拷贝源代码](https://github.com/lost-dream/blog/blob/src/source/_posts/markdown%E8%AF%AD%E6%B3%95.md)，然后放在解析工具里对比查看，学习效果翻倍。
 >> 常见的解析工具有 简书、github、MarkDownPad、有道云笔记，如果开发者使用IDE有安装markdown预览的插件也可以直接在编辑器查看。
-![1.png](/blog/img/markdown-eg.jpeg)
+![1.png](/img/markdown-eg.jpeg)
 
 ## 基本语法
 

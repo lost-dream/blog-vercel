@@ -405,7 +405,7 @@ date: 2019-12-12 09:22:18
 
 **如果你也是 Mac 电脑，并且你复制了我的`setting.json`，当中有一个只需要注意：`editor.fontFamily: "FiraCode-Retina"`**，要保证你也安装了这个字体，他才会生效。这个字体可以给你更优雅的代码展示，尤其是在条件语句中。
 
-![FiraCode](/blog/img/FiraCode.jpg)
+![FiraCode](/img/FiraCode.jpg)
 
 Mac 可以使用`homebrew`安装这个字体
 
@@ -418,7 +418,7 @@ Mac 可以使用`homebrew`安装这个字体
 
 因为`custom-css-and-js`的原因，允许自己修改编辑器的样式，事实上你可以把编辑器修改成任何样式，比如我的是毛玻璃的外观
 
-![alpha-bg](/blog/img/alpha-bg.jpg)
+![alpha-bg](/img/alpha-bg.jpg)
 
 那我怎么知道样式是什么，并且怎么调整呢？其实很简单，使用`cmd + shift + p`输入 `toggle developer`, 选中切换开发者人员工具，会跳出来一个类似于 chrome 的调试面板。接下来的操作就像操作修改普通的 css 样式一样了，把这些修改过的 css 文件放到一个固定的地方，传入到`custom-css-and-js`的设置中，重启编辑器就可以生效了。
 

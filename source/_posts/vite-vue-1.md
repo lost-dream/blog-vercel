@@ -299,7 +299,7 @@ module.exports = {
 ```
 
 如此，执行`yarn commit`命令，会出现以下效果
-![commitizen](/blog/img/commitizen.jpg)
+![commitizen](/img/commitizen.jpg)
 方向键选择要提交的类型，确定后输入提交的信息即可。当然如果你更喜欢命令行直接提交也是可以的，新建文件`commitlint.config.js`
 
 ```js
