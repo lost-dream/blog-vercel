@@ -11,7 +11,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://13623673118.github.io/blog
+url: https://zcm-blog.vercel.app
 root: /
 permalink: posts/:abbrlink/
 abbrlink:
@@ -111,7 +111,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:lost-dream/blog.git
+  repo: git@github.com:lost-dream/blog-vercel.git
   branch: master
 # search
 search:

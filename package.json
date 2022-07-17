@@ -6,7 +6,7 @@
     "version": "3.9.0"
   },
   "scripts": {
-    "dev": "hexo clean && hexo g && hexo server -p 5000",
+    "dev": "hexo clean && hexo g && hexo server -p 5555",
     "deploy": "hexo clean && hexo g && gulp && hexo deploy"
   },
   "engines": {

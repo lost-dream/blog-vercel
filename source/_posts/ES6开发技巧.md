@@ -310,7 +310,7 @@ const arr2 = arr.every((item) => item)
 
 ### Array.reduce
 
-这里不做解释，参考[详解 reduce](https://lost-dream.github.io/blog/2020/01/15/reduce/)
+这里不做解释，参考[详解 reduce](https://zcm-blog.vercel.app/posts/200f4743)
 
 ### Array.find & Array.findIndex
 
@@ -460,7 +460,7 @@ map.clear()
 
 ## Promise
 
-这里不做解释，详见 [promise 详解](https://lost-dream.github.io/blog/2020/04/09/promise/)
+这里不做解释，详见 [promise 详解](https://zcm-blog.vercel.app/posts/fa98e2f7)
 
 ## Async & Await
 

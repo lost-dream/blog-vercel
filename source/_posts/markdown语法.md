@@ -13,7 +13,7 @@ date: 2019-11-29 09:22:15
 
 最近新入职一家公司，目前尚没有自己的项目架构和开发规范。于是我把这块负责起来，搭建了初始的开发脚手架和一些开发规范。可是当我发布之后，让大家跟我一起修改，竟然没有一个人能懂我写的是什么！！what？？还有比markdown更简单易懂的语言吗？还能有开发人员不会markdown语法？那大家平时是怎么交流的，上传一张word文档到git仓库，大家一起改吗？这篇文章主要讲述markdown的语法，其实并不复杂，网上这类教程也挺多的，主要是写给公司开发的，同时也为了巩固markdown语法，众所周知，因为一些事情，我已经半年没有写过博客了....
 
-> 因为语法是直接生效的，导致有些地方不方便做比对。建议[拷贝源代码](https://github.com/lost-dream/blog/blob/src/source/_posts/markdown%E8%AF%AD%E6%B3%95.md)，然后放在解析工具里对比查看，学习效果翻倍。
+> 因为语法是直接生效的，导致有些地方不方便做比对。建议[拷贝源代码](https://github.com/lost-dream/blog-vercel/blob/main/source/_posts/markdown%E8%AF%AD%E6%B3%95.md)，然后放在解析工具里对比查看，学习效果翻倍。
 >> 常见的解析工具有 简书、github、MarkDownPad、有道云笔记，如果开发者使用IDE有安装markdown预览的插件也可以直接在编辑器查看。
 ![1.png](/img/markdown-eg.jpeg)
 
