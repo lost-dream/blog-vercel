@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://13623673118.github.io/blog
-root: /blog
+root: /
 permalink: posts/:abbrlink/
 abbrlink:
   alg: crc32
